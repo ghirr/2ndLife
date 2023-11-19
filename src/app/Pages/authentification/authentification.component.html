@@ -1,0 +1,67 @@
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form [formGroup]="signupForm">
+	<!--		<h1>Create Account</h1>-->
+			<div class="social-container">
+				<a type="button" (click)="facebookSignup()" class="social"><fa-icon [icon]="icons.fb" ></fa-icon></a>
+				<a type="button" (click)="googleSignup()" class="social"><fa-icon [icon]="icons.g" ></fa-icon></a>
+			</div>
+			<span>or use your email for registration</span>
+			<input type="text" placeholder="Full Name" formControlName="name" />
+			<div class="text-danger" *ngIf="signupForm.controls['name'].invalid && ( signupForm.controls['name'].dirty || signupForm.controls['name'].touched) ">
+				<div style="color: red" *ngIf="signupForm.controls['name'].errors?.['minlength'] ">plus de 3 caracteres</div>
+			</div>
+			<input type="email" placeholder="Email" formControlName="email" />
+			<div class="text-danger"*ngIf="signupForm.controls['email'].invalid && ( signupForm.controls['email'].dirty || signupForm.controls['email'].touched) ">
+				<div style="color: red"
+				*ngIf="signupForm.controls['email'].errors?.['email'] "> Email should contain '@' && .com</div>
+			</div>
+			<input type="tel" placeholder="Phone Number" formControlName="PhoneNumber" minlength="8" maxlength="8"/>
+			<div *ngIf="signupForm.controls['PhoneNumber'].invalid &&(signupForm.controls['PhoneNumber'].touched ||signupForm.controls['PhoneNumber'].dirty)">
+				<div style="color: red" *ngIf="signupForm.get('PhoneNumber')?.errors?.['minlength'] || signupForm.get('PhoneNumber')?.errors?.['maxlength']">numero 8 chiffres</div>
+				<div *ngIf="signupForm.get('PhoneNumber')!.hasError('invalidPhoneNumber')&&!(signupForm.get('PhoneNumber')?.errors?.['minlength'] || signupForm.get('PhoneNumber')?.errors?.['maxlength'])" style="color: red">invalid Phone Number</div>
+	 		</div>
+			<input type="password" placeholder="Password" formControlName="password" />
+			<div *ngIf="signupForm.controls['password'].invalid &&(signupForm.controls['password'].touched ||signupForm.controls['password'].dirty)">
+					<div *ngIf="signupForm.controls['password'].errors?.['minlength']" style="color: red">Password mast have at least 6 chas</div>
+			   		<div *ngIf="signupForm.get('password')!.hasError('passwordStrength') && !signupForm.controls['password'].errors?.['minlength']" style="color: red">{{signupForm.get('password')!.errors?.['passwordStrength']}}</div>
+			</div>
+			<input type="password" placeholder="ConfirmPassword" formControlName="copassword"/>
+			<div class="text-danger" *ngIf="signupForm.controls['copassword'].invalid && ( signupForm.controls['copassword'].dirty || signupForm.controls['copassword'].touched) "> 
+				<div style="color: red" *ngIf="signupForm.controls['copassword'].errors?.['mustMatch']">must be identical </div>
+			</div>
+			<button type="submit"
+			[hidden]="(signupForm.controls['password'].errors)||(signupForm.controls['copassword'].errors)||(signupForm.controls['email'].errors)||(signupForm.controls['name'].errors)||(signupForm.controls['PhoneNumber'].errors)"
+			(click)="signupUser(signupForm.value)"
+			>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form #loginForm="ngForm"  (ngSubmit)="login()">
+			<h1>Sign in</h1>
+			<div class="social-container">
+                <a type="button" (click)="facebookSignup()" class="social"><fa-icon [icon]="icons.fb" ></fa-icon></a>
+				<a type="button" (click)="googleSignup()" class="social"><fa-icon [icon]="icons.g" ></fa-icon></a>
+			</div>
+			<span>or use your account</span>
+			<input type="email" placeholder="Email"  [(ngModel)]="user.email" name="email"/>
+			<input type="password" placeholder="Password" [(ngModel)]="user.password" name="password"/>
+			<a href="#">Forgot your password?</a>
+			<button type="submit">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
