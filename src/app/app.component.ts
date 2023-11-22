@@ -9,7 +9,7 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class AppComponent {
   title = '2ndLife';
- // user: any; // Replace 'any' with the actual type of your user object.
+  user: any; // Replace 'any' with the actual type of your user object.
   showHeader = true;
   showFooter = true;
 
@@ -28,13 +28,6 @@ export class AppComponent {
   }
 
   ngOnInit() {
-  /*  this.userService.getUserData().subscribe((data: any) => {
-      if (data.success) {
-        this.user = data.user;
-        this.router.navigate(['/']);
-      } else {
-        // Handle the case where the user is not authenticated or an error occurred.
-      }
-    });*/
+    this.userService.getUserData()
   }
 }

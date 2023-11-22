@@ -7,6 +7,15 @@ const bcrypt = require("bcrypt"); //import module Bcrypt
 
 const CLIENT_URL = "http://localhost:4200/";
 
+Userrouter.get('/session-data', (req, res) => {
+  console.log(req.session);
+  if (req.user) {
+    res.status(201).json({ data:req.session.passport.user });
+  } else {
+   // res.status(401).json({ message: 'User not authenticated' });
+  }
+});
+
 Userrouter.get("/login/success", (req, res) => {
   if (req.user) {
     req.login(req.user, (err) => {
@@ -14,11 +23,7 @@ Userrouter.get("/login/success", (req, res) => {
         return res.status(401).json({ success: false, message: "Login failed" });
       }
 
-      return res.status(200).json({
-        success: true,
-        message: "Login successful",
-        user: req.user,
-      });
+      res.redirect("http://localhost:4200/home");
     });
   }else{
     console.log(req.session);
@@ -41,12 +46,12 @@ router.get("/logout", (req, res) => {
 Userrouter.get('/google',passport.authenticate('google', { scope:[ 'email', 'profile' ] }));
 
 Userrouter.get('/google/cb', passport.authenticate('google',  {
-  successRedirect: "login/success",
+  successRedirect: "http://localhost:3000/auth/login/success",
   failureRedirect: CLIENT_URL+"**",
 }));
 
 
-
+/*
 Userrouter.get("/facebook", passport.authenticate("facebook", { scope: ["profile"] }));
 
 Userrouter.get(
@@ -56,7 +61,7 @@ Userrouter.get(
     failureRedirect: "/login/failed",
   })
 );
-
+*/
 Userrouter.post("/sign-up", async (req, res) => {
   const data = await User.findOne({ email: req.body.email });
   if (data?.email) {

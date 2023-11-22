@@ -16,7 +16,14 @@ export class UserauthService {
  private loginAttempts: number = 0;
   private isBlocked: boolean = false;
   getUserData() {
-    return this.httpClient.get(this.user_url+'/login/success',this.options);
+    return this.httpClient.get(this.user_url+'/session-data',this.options).subscribe((data: any) => {
+      if (data) {
+        sessionStorage.setItem('user',JSON.stringify(data));
+      } else {
+console.log('lougha');
+
+      }
+    });;
   }
   /*
   login(username: string, password: string) {
