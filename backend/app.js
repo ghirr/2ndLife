@@ -8,6 +8,7 @@ const cors = require("cors");
 const passport = require("passport");
 const Userrouter = require("./routes/auth");
 const Livreurrouter=require("./routes/livreurRoute");
+const Objetrouter = require("./routes/objetRoute");
 
 // creation app express
 const app = express();
@@ -84,6 +85,7 @@ app.use(passport.session())
 
 app.use("/auth", Userrouter);
 app.use("/livreur", Livreurrouter);
+app.use("objet",Objetrouter)
 
 
   module.exports= app;
