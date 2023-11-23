@@ -85,7 +85,7 @@ app.use(passport.session())
 
 app.use("/auth", Userrouter);
 app.use("/livreur", Livreurrouter);
-app.use("objet",Objetrouter)
+app.use("/objet",Objetrouter)
 
 
   module.exports= app;

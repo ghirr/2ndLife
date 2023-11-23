@@ -1,6 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const objet = require('../models/Objet');
+const { verifyToken } = require("../middleware/verifyToken");
 const Objetrouter = express.Router();
 
 const MIME_TYPE = {
@@ -30,7 +31,7 @@ const storage = multer.diskStorage({
 
 // Add objet
 Objetrouter.post(
-  "/",
+  "/",verifyToken,
   multer({ storage: storage }).single("image"),
   async (req, res) => {
     console.log(req.body);
@@ -59,7 +60,7 @@ Objetrouter.post(
   }
 );
 //   trait logique get all objets
-Objetrouter.get("/", (req, res) => {
+Objetrouter.get("/",verifyToken,(req, res) => {
     objet.find().populate().then((findedObject) => {
     res.status(200).json({
         objets: findedObject,
@@ -69,7 +70,7 @@ Objetrouter.get("/", (req, res) => {
   });
 });
 //   trait logique delete objet
-Objetrouter.delete("/:id", (req, res) => {
+Objetrouter.delete("/:id", verifyToken,(req, res) => {
   console.log("here into delete", req.params.id);
   objet.deleteOne({ _id: req.params.id }).then(() => {
     res.status(200).json({
@@ -79,7 +80,7 @@ Objetrouter.delete("/:id", (req, res) => {
   });
 });
 //   trait logique get objet by Id
-Objetrouter.get("/:id", (req, res) => {
+Objetrouter.get("/:id", verifyToken,(req, res) => {
   console.log("here into get objet by id", req.params.id);
   try{
   objet.findOne({ _id: req.params.id }).then((data) => {
@@ -97,7 +98,7 @@ Objetrouter.get("/:id", (req, res) => {
 });
 //trait update objet
 
-Objetrouter.put("/:id", multer({ storage: storage }).single("image"), (req, res, next) => {
+Objetrouter.put("/:id", verifyToken,multer({ storage: storage }).single("image"), (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
   const updatedObjet = {
     name: req.body.name,

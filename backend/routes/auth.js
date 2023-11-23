@@ -2,6 +2,8 @@ const Userrouter = require("express").Router();
 const passport = require("passport");
 const User =require("../models/User");
 const bcrypt = require("bcrypt"); //import module Bcrypt
+const jwt = require("jsonwebtoken");
+const config=require('../config/config');
 
 
 
@@ -110,12 +112,16 @@ Userrouter.post("/sign-up", async (req, res) => {
         } else {
           let user = {
             name: findedUser.name,
-            email: findedUser.email,
-            role:findedUser.role
+            email: findedUser.email
           };
+          
+       let data= jwt.sign({
+          data: {id:findedUser._id,role:findedUser.role},
+        }, config.secret,{ expiresIn: '10m' });
           res.status(200).json({
-            message: "Welcome "+user.firstName,
+            message: "Welcome "+user.name,
             user: user,
+            token:data
           });
         }
       }
