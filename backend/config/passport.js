@@ -53,9 +53,14 @@ passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-passport.deserializeUser((id, done) => {
- let User=user.findOne({googleid:id});
-  done(null,User)
+passport.deserializeUser((User, done) => {
+  user.findOne({ googleid: User.id })
+    .then((foundUser) => {
+      done(null, foundUser);
+    })
+    .catch((error) => {
+      done(error, null);
+    });
 });
 
 

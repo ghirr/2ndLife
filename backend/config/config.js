@@ -19,7 +19,8 @@ module.exports = {
     facebook:{
         clientId: process.env.Facebook_Id_Passport ,
         clientSecret: process.env.Facebook_code_Passport
-    }
+    },
+    secret:"FF3E1CE64494742DA789444E9ACA8"
   
   }
   

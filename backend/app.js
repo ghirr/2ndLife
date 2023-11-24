@@ -7,6 +7,8 @@ const mongoose = require("mongoose"); //import module mongoose
 const cors = require("cors");
 const passport = require("passport");
 const Userrouter = require("./routes/auth");
+const Livreurrouter=require("./routes/livreurRoute");
+const Objetrouter = require("./routes/objetRoute");
 
 // creation app express
 const app = express();
@@ -64,7 +66,7 @@ app.use(bodyParser.json());
 
   app.use(
     session({
-      secret: "your-secret-key", // Replace with a strong secret key
+      secret: "2ndlife", // Replace with a strong secret key
       resave: false,
       saveUninitialized: true,
     })
@@ -82,5 +84,8 @@ app.use(passport.session())
 
 
 app.use("/auth", Userrouter);
+app.use("/livreur", Livreurrouter);
+app.use("/objet",Objetrouter)
+
 
   module.exports= app;
