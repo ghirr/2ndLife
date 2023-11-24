@@ -19,7 +19,7 @@ export class AppComponent {
         const currentPath = event.urlAfterRedirects.split('?')[0];
         console.log(currentPath);
         
-        if (!['/', '/signup', '/login', '/home', '/menu', '/mesTables', '/table', '/table/:id', '/add-plat', '/add-plat/:id', '/mesTables', '/add-chef', '/add-chef/:id', '/admin/chefs', '/admin/plats', '/admin/users', '/admin/tables', '/dash'].includes(currentPath)) {
+        if (!['/', '/signup', '/login', '/home', '/menu', '/mesTables', '/table', '/table/:id', '/add-plat', '/add-plat/:id', '/mesTables', '/add-chef', '/add-chef/:id', '/admin/chefs', '/admin/plats', '/admin/users', '/admin/tables', '/dash', '/add-produit'].includes(currentPath)) {
           this.showHeader = false;
           this.showFooter = false;
         } 

@@ -1,0 +1,31 @@
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  input {
+    padding: 8px;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  button {
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  tbody, td, tfoot, th, thead, tr {
+    border-color: #afbfb8;
+    border-style: dotted; 
+    border-width: none;
+}
+#toastBody button{
+  background:rgba(255,255,255,.85);
+  border:1px solid #257025;
+  color: #000;
+  font-weight:bold;
+}
+
+  

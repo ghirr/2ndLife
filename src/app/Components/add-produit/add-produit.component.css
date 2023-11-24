@@ -1,0 +1,241 @@
+body {
+    font-family: "Poppins", sans-serif;
+    color: #000000;
+    background-color: #ffffff;
+  }
+  
+  .layout_padding {
+    padding: 75px 0;
+  }
+  
+  .layout_padding2 {
+    padding: 45px 0;
+  }
+  
+  .layout_padding2-top {
+    padding-top: 45px;
+  }
+  
+  .layout_padding2-bottom {
+    padding-bottom: 45px;
+  }
+  
+  .layout_padding-top {
+    padding-top: 75px;
+  }
+  
+  .layout_padding-bottom {
+    padding-bottom: 75px;
+  }
+  
+  .heading_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  
+  .heading_container h2 {
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+  }
+  
+  .heading_container h2::before, .heading_container h2::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 1px;
+    background-color: rgb(71, 195, 236)196, 254;
+  }
+  
+  .heading_container h2::before {
+    left: -5px;
+    -webkit-transform: translate(-100%, -50%);
+            transform: translate(-100%, -50%);
+  }
+  
+  .heading_container h2::after {
+    right: -5px;
+    -webkit-transform: translate(100%, -50%);
+            transform: translate(100%, -50%);
+  }
+  
+  
+  .btn,
+  .btn:focus {
+    outline: none !important;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  
+  .user_option {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .custom_nav-container .nav_search-btn {
+
+    background-size: 22px;
+    background-repeat: no-repeat;
+    background-position-y: 7px;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    border: none;
+  }
+  
+  .navbar-brand {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .navbar-brand span {
+    font-size: 24px;
+    color: #ffffff;
+  }
+  
+  .custom_nav-container {
+    z-index: 99999;
+    padding: 15px 0;
+  }
+  
+  .custom_nav-container .navbar-toggler {
+    outline: none;
+  }
+  
+
+  
+  /*end header section*/
+  
+  /* contact section */
+  .contact_section .heading_container {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .contact_section .contact-form {
+    padding: 25px;
+    border-radius: 20px;
+  }
+  
+  .contact_section .contact-form input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+    margin: 15px 0;
+    padding: 10px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 30px;
+  }
+  
+  .contact_section .contact-form input.input_message {
+    height: 175px;
+  }
+  
+  .contact_section .contact-form input::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .contact_section .contact-form input:-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .contact_section .contact-form input::-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .contact_section .contact-form input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .contact_section .contact-form button {
+    border: none;
+    outline: none;
+    padding: 12px 50px;
+    text-transform: uppercase;
+    margin-top: 25px;
+    background-color: #8f914b;
+    color: #fff;
+    border-radius: 30px;
+  }
+  
+  .contact_section .map_img-box {
+    width: 80%;
+    margin: 25px auto 0 auto;
+  }
+  
+  .contact_section .map_img-box img {
+    width: 100%;
+  }
+  
+  /* end contact section */
+
+
+  .mama {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.mama1 {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    background-color: rgb(230, 226, 221);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    border-radius:20px ;
+}
+
+.article {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    border-radius:20px ;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.mama2 {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+}
+  
