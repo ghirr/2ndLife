@@ -8,9 +8,10 @@ import { ProduitService } from 'src/app/Services/produit.service';
   styleUrls: ['./listproduit.component.css']
 })
 export class ListproduitComponent {
-  produits: any[] = [];
-
-  constructor(private router: Router, private produitservice: ProduitService) {} // Inject the Router service
+  Objets:any=[];
+  constructor(private produitservice:ProduitService,private router:Router){
+    this.getAllProduit();
+  }
 
   ngOnInit(): void {
     this.getAllProduit();
@@ -18,8 +19,9 @@ export class ListproduitComponent {
 
   getAllProduit() {
     this.produitservice.getAllProduit().subscribe(
-      (data: any) => {
-        this.produits = data; // Assign the fetched data to the products array
+      (result) => {
+        console.log("here", result.objets);
+        this.Objets = result.objets;
       }
     );
   }
@@ -31,8 +33,8 @@ export class ListproduitComponent {
   }
 
   editProduit(id: any) {
-    this.produitservice.editProduit(id).subscribe(() => {
-      this.router.navigate([`editMatch/${id}`]);
-    });
+    
+      this.router.navigate([`edit-produit/${id}`]);
+    
   }
 }

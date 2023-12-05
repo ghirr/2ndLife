@@ -5,6 +5,7 @@ const session = require('express-session');
 const bodyParser = require("body-parser"); //import module body-parser
 const mongoose = require("mongoose"); //import module mongoose
 const cors = require("cors");
+const path = require("path");
 const passport = require("passport");
 const Userrouter = require("./routes/auth");
 const Livreurrouter=require("./routes/livreurRoute");
@@ -12,6 +13,7 @@ const Objetrouter = require("./routes/objetRoute");
 
 // creation app express
 const app = express();
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 
 app.use(

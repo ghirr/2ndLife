@@ -17,18 +17,19 @@ const routes: Routes = [
   
   //{path:"home",component:HomeComponent},
   {path:"dash",component:DashAdminComponent},
-  //{path:"**",pathMatch: 'full',component:ErrorPageComponent},
+  
   {path:"add-produit", component:AddProduitComponent},
   //{path:"home", component:HomeComponent}
   {path:"", component:HomeComponent},
   {path:"list", component:ListproduitComponent},
-  {path:"edit-produit" , component:EditProduitComponent},
+  {path:"edit-produit/:id" , component:EditProduitComponent},
   {path:"cards" , component:CardsComponent},
 
   {path: 'login-liv' , component:LoginComponent},
   {path: 'signup-liv' , component:SignupComponent},
   {path: 'recover-pwd-liv' , component:RecoverPWDComponent},
 
+   {path:"**",pathMatch: 'full',component:ErrorPageComponent},
 ];
 
 @NgModule({

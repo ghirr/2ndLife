@@ -32,32 +32,40 @@ export class AddProduitComponent {
       //this.title = "Ajouter un objet";
     }
     this.productForm = this.formBuilder.group({
-        image1: ["", Validators.required], // Adjust this if needed
-        image2: ["", Validators.required], // Adjust this if needed
+        //image1: ["", Validators.required], // Adjust this if needed
+      //  image2: ["", Validators.required], // Adjust this if needed
         nom: ["", Validators.required],
         description: ["", Validators.required],
         prix: ["", Validators.required],
         addresse: ["", Validators.required]
     });
   }
-  addProduit(){
-    console.log('Here my object', this.produit);
-    /*if (this.id) {
-      // edit produit
-      this.produitservice.editProduit(this.produit).subscribe(
-        (response) => {              //  fonction fléchée // reponse du BE
-          console.log("here response from BE after edit", response)
-          this.produit=response           //  mettez à jour la propriété this.produit avec la nouvelle valeur du produit.
-        }
-      );
-    } else {*/
-      // add produit
-      this.produitservice.addProduit(this.produit).subscribe(
-        ()=> {
-          this.router.navigate(["listproduit"]);
-        }
-      )
-    }   
+  onImageSelected(event: Event) {
+    
+    const target = event.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    this.produit.image = file;
+  
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
   }
+  addEditProduit(){
+    console.log('Here my object', this.produit);
+      // add produit
+      let formData = new FormData();
+    formData.append('image', this.produit.image);
+    formData.append('name', this.produit.name);
+  //  formData.append('catagorie', produit.catagorie);
+    formData.append('description', this.produit.description);
+    formData.append('price', this.produit.price);
+    formData.append('adresse', this.produit.adresse);
+    console.log(formData);
+    
+      this.produitservice.addProduit(this.produit)
+         this.router.navigate(["/list"]);
+        }
+      
+    }   
+  
 
 
