@@ -1,0 +1,109 @@
+<br><br><br><br>
+<div class="wrapper">
+    <div class="sign-panels">
+        <div class="signup">
+            <div class="title">
+                <span>Sign Up</span>
+                <br>
+                <p> You can create a new account. Or your regular user login.</p>
+            </div>
+            <div class="or"><span></span></div>
+            <form [formGroup]="signupForm">
+                <div class="form-group">
+
+                    <input type="text" id="username" ngModel name="username" formControlName="username" required
+                        placeholder="Username">
+                    <div
+                        *ngIf="signupForm.controls['username'].invalid && (signupForm.controls['username'].dirty || signupForm.controls['username'].touched)">
+                        <div *ngIf="signupForm.controls['username'].errors?.['minlength']" style="color: red;">
+                            Username must have at least 4 chars
+                        </div>
+                        <div *ngIf="signupForm.controls['username'].errors?.['required']" style="color: red;">
+                            Username is required
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="numCIN" ngModel name="numCIN" formControlName="numCIN" required
+                        placeholder="CIN Number">
+                    <div
+                        *ngIf="signupForm.controls['numCIN'].invalid && (signupForm.controls['numCIN'].dirty || signupForm.controls['numCIN'].touched)">
+                        <div *ngIf="signupForm.controls['numCIN'].errors?.['required']&&!signupForm.controls['numCIN'].errors?.['numCIN']"
+                            style="color: red;">
+                            Requiere
+
+                        </div>
+                        <div *ngIf="signupForm.controls['numCIN'].errors?.['numCIN']" style="color: red;">
+                            Invalid CIN Number
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="numTel" ngModel name="numTel" formControlName="numTel" required
+                        placeholder="Phone Number">
+                    <div
+                        *ngIf="signupForm.controls['numTel'].invalid && (signupForm.controls['numTel'].dirty || signupForm.controls['numTel'].touched)">
+                        <div *ngIf="signupForm.controls['numTel'].errors?.['required']" style="color: red;">
+
+                        </div>
+                        <div *ngIf="signupForm.controls['numTel'].errors?.['numTel']" style="color: red;">
+                            Invalid Phone Number
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" class="form-control" formControlName="email" placeholder="Email Address"
+                        required>
+                    <div
+                        *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)">
+                        <div *ngIf="signupForm.controls['email'].errors?.['email']" style="color: red;">
+                            Invalid email format
+                        </div>
+                        <div *ngIf="signupForm.controls['email'].errors?.['required']" style="color: red;">
+                            Email is required
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password"
+                        required>
+                    <div
+                        *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)">
+                        <div *ngIf="signupForm.controls['password'].errors?.['minlength']" style="color: red;">
+                            Password must have at least 8 chars
+                        </div>
+                        <div *ngIf="signupForm.controls['password'].errors?.['required']" style="color: red;">
+                            Password is required
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" formControlName="confirmPwd"
+                        placeholder="Repeat Password" required>
+                    <div
+                        *ngIf="signupForm.controls['confirmPwd'].invalid && (signupForm.controls['confirmPwd'].dirty || signupForm.controls['confirmPwd'].touched)">
+                        <div *ngIf="signupForm.controls['confirmPwd'].errors?.['minlength']" style="color: red;">
+                            Passwords do not match
+                        </div>
+                        <div *ngIf="signupForm.controls['confirmPwd'].errors?.['required']" style="color: red;">
+                            Confirmed Password is required
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" [disabled]="signupForm.invalid" (click)="addUser(signupForm.value)"
+                    class="btn-signin">Sign Up</button>
+
+                <div class="signup-option">
+                    <a routerLink="/login-liv" class="nav-link" class="btn-login btn-fade">Already have an account, Sign In
+                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

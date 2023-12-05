@@ -1,0 +1,39 @@
+<div class="wrapper">
+    <div class="sign-panels">
+        <div class="recover-password">
+            <div class="title">
+                <span>Recover Password</span>
+                <br>
+                <p>Enter in the username or email associated with your account</p>
+            </div>
+            <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
+                <div>
+                    <input id="resetPassword" type="text" formControlName="username"
+                        placeholder="Username" />
+                    <div *ngIf="resetForm.controls['username'].touched && resetForm.controls['username'].errors">
+                        <div *ngIf="resetForm.controls['username'].errors?.['required']" style="color: red;">Username is required</div>
+                    </div>
+                </div>
+                <div>
+
+                    <input id="email" type="email" formControlName="email" placeholder="Email Address" />
+                    <div *ngIf="resetForm.controls['email'].touched && resetForm.controls['email'].errors">
+                        <div *ngIf="resetForm.controls['email'].errors?.['required']" style="color: red;">Email is required</div>
+                        <div *ngIf="resetForm.controls['email'].errors?.['email']" style="color: red;">Email is not valid</div>
+                    </div>
+                </div>
+                <div>
+                    <span class="error"></span>
+                    <button type="submit" class="btn-signin btn-password">Submit Reset</button>
+                    <a routerLink="/login-liv" class="nav-link" class="btn-login btn-fade"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Cancel and go back to Login page </a>
+                </div>
+            </form>
+        <!--<div class="notification">
+                <p>Good job. An email containing information on how to reset your passworld was sent to
+                    <span class="reset-mail"></span>. Please follow the instruction in that email to
+                    reset your password. Thanks!
+                </p>
+            </div-->
+        </div>
+    </div>
+</div>
