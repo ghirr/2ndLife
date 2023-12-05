@@ -14,14 +14,14 @@ const routes: Routes = [
   
   //{path:"home",component:HomeComponent},
   {path:"dash",component:DashAdminComponent},
-  //{path:"**",pathMatch: 'full',component:ErrorPageComponent},
+  
   {path:"add-produit", component:AddProduitComponent},
   //{path:"home", component:HomeComponent}
   {path:"", component:HomeComponent},
   {path:"list", component:ListproduitComponent},
-  {path:"edit-produit" , component:EditProduitComponent},
+  {path:"edit-produit/:id" , component:EditProduitComponent},
   {path:"cards" , component:CardsComponent},
-
+   {path:"**",pathMatch: 'full',component:ErrorPageComponent},
 ];
 
 @NgModule({

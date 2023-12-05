@@ -18,43 +18,58 @@ export class EditProduitComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private produitservice: ProduitService,
     private router: Router
-  ) { }
+  ) {
+    this.id = this.activatedRoute.snapshot.paramMap.get("id")
+    if (this.id) {
+      this.getProjectById()
+    }else{
+      this.router.navigate(["/list"])
+    }
+   }
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (this.id) {
-      this.produitservice.getProduitById(this.id).subscribe(
-        (data: any) => {
-          this.produit = data;
-          this.initializeForm();
-        }
-      )
-    } else {
-      // Handle the case where no ID is provided (e.g., redirect or show an error)
-    }
+   
+  }
+  getProjectById() {
+
+
+    this.produitservice.getProduitById(this.id).subscribe((res) => {
+      this.produit = res.objet;
+      console.log(this.produit);
+      
+    })
+  
+  
   }
 
   initializeForm() {
     this.productForm = this.formBuilder.group({
-      image1: [this.produit.image1, Validators.required],
-      image2: [this.produit.image2, Validators.required],
-      nom: [this.produit.nom, Validators.required],
+     // image1: [this.produit.image1, Validators.required],
+    //  image2: [this.produit.image2, Validators.required],
+      nom: [this.produit.name, Validators.required],
       description: [this.produit.description, Validators.required],
-      prix: [this.produit.prix, Validators.required],
+      prix: [this.produit.price, Validators.required],
       addresse: [this.produit.addresse, Validators.required]
     });
+  }
+  onImageSelected(event: Event) {
+    
+    const target = event.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    this.produit.image = file;
+  
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
   }
 
   editProduit() {
     console.log('Here my edited object', this.produit);
     if (this.id) {
       // Edit existing product
-      this.produitservice.editProduit(this.produit).subscribe(
-        (response) => {
-          console.log("Response from BE after edit", response);
-          // Handle success or error as needed
-        }
-      );
+      this.produitservice.editProduit(this.produit);
+       
+          this.router.navigate(['/list']);
+        
     } else {
       // Redirect to appropriate page or handle as needed
     }

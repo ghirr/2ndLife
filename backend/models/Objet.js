@@ -5,10 +5,10 @@ const objetSchema= mongoose.Schema({
         type: String,
         required: true,
     },
-    categorie:{
+    /*categorie:{
         type: String,
         required: true,
-    },
+    },*/
     description:String,
     price:{
         type: Number,
@@ -18,6 +18,7 @@ const objetSchema= mongoose.Schema({
         type: String,
         required: true,
     },
+    /*
     username:{
         type: String,
         required: true,
@@ -25,7 +26,7 @@ const objetSchema= mongoose.Schema({
     userphone:{
         type: String,
         required: true,
-    },
+    },*/
     adresse:String,
 
 })

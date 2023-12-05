@@ -28,6 +28,6 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.userService.getUserData()
+    //this.userService.getUserData()
   }
 }

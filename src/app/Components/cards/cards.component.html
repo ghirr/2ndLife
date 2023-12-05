@@ -7,25 +7,26 @@
   <div class="clearfix"></div><br>
   
   <div class="items container" style="width:80%">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
+          <div class="col" *ngFor="let o of Objets">
             <div class="card shadow-sm">
-              <img src="https://media.nelly.com/i/nlyscandinavia/236397-4OXH_01?fmt=webp&qlt=default&w=520&h=693&sm=c&fmt=webp&qlt=default">
+              <img [src]="o.image" style="
+              height: 220px;">
               <div class="card-body">
-                <span class="text-muted fs-6">ABRAND JEANS</span>
-                <h6> 94 HIGH SLIM BLACK BOX</h6>
-                <p class="card-text">This is a wider card with supporting</p>
+                <span class="text-muted fs-6">{{o.name}}</span>
+                <h6> {{o.adresse}}</h6>
+                <p class="card-text">{{o.description}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <button  id="liveToastBtn" data-id="1" data-price="109" data-product="Jeans" data-quantity="1" type="button" class="btn btn-sm btn-outline-secondary btn-success text-white">Add to Cart</button>
                   
                   </div>
-                  <small class="text-muted ">$109</small>
+                  <small class="text-muted ">{{o.price}}</small>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col">
+       <!---  <div class="col">
             <div class="card shadow-sm">
               <img src="https://media.nelly.com/i/nlyscandinavia/095933-0001_02?fmt=webp&qlt=default&w=520&h=693&sm=c&fmt=webp&qlt=default">
               <div class="card-body">
@@ -126,18 +127,22 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
   
   </div>
   </div>
   
+  <br>
+  <br>
+  <br>
+  <br>
   <br>
   
   <div id="basket"></div>
   
   
   
-  <div class="toast-container position-fixed top-0 end-0 p-3">
+  <!--<div class="toast-container position-fixed top-0 end-0 p-3">
     <div id="liveToast" class="toast  bg-success" data-bs-autohide="false" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <i class="bi bi-basket fs-5 pe-3"></i>
@@ -172,5 +177,5 @@
   
   <div *ngFor="let item of filteredList">
     {{ item }}
-  </div>
+  </div> -->
   

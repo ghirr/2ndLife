@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const objet = require('../models/Objet');
 const { verifyToken } = require("../middleware/verifyToken");
+const fs = require('fs');
 const Objetrouter = express.Router();
 
 const MIME_TYPE = {
@@ -15,11 +16,12 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const isValid = MIME_TYPE[file.mimetype];
     let error = new Error("Mime type is invalid");
+    console.log(isValid);
     if (isValid) {
       error = null;
-      return;
     }
     cb(null, "backend/images/objets");
+    console.log("hani");
   },
   filename: (req, file, cb) => {
     const name = file.originalname.toLowerCase().split(" ").join("-");
@@ -31,7 +33,9 @@ const storage = multer.diskStorage({
 
 // Add objet
 Objetrouter.post(
-  "/",verifyToken,
+  "/"
+  //,verifyToken
+  ,
   multer({ storage: storage }).single("image"),
   async (req, res) => {
     console.log(req.body);
@@ -60,27 +64,43 @@ Objetrouter.post(
   }
 );
 //   trait logique get all objets
-Objetrouter.get("/",verifyToken,(req, res) => {
+Objetrouter.get("/"
+//,verifyToken
+,(req, res) => {
     objet.find().populate().then((findedObject) => {
     res.status(200).json({
-        objets: findedObject,
-      
+        objets: findedObject,  
     });
     return;
   });
 });
 //   trait logique delete objet
-Objetrouter.delete("/:id", verifyToken,(req, res) => {
+Objetrouter.delete("/:id"
+//, verifyToken
+,(req, res) => {
   console.log("here into delete", req.params.id);
   objet.deleteOne({ _id: req.params.id }).then(() => {
     res.status(200).json({
       message: "objet deleted",
     });
+    /*if (fs.existsSync()) {
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error('Error deleting file:', err);
+        } else {
+          console.log('File deleted successfully.');
+        }
+      });
+    } else {
+      console.log('File not found.');
+    }*/
     return;
   });
 });
 //   trait logique get objet by Id
-Objetrouter.get("/:id", verifyToken,(req, res) => {
+Objetrouter.get("/:id"
+//,verifyToken
+,(req, res) => {
   console.log("here into get objet by id", req.params.id);
   try{
   objet.findOne({ _id: req.params.id }).then((data) => {
@@ -98,7 +118,9 @@ Objetrouter.get("/:id", verifyToken,(req, res) => {
 });
 //trait update objet
 
-Objetrouter.put("/:id", verifyToken,multer({ storage: storage }).single("image"), (req, res, next) => {
+Objetrouter.put("/:id"
+//, verifyToken
+,multer({ storage: storage }).single("image"), (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
   const updatedObjet = {
     name: req.body.name,
@@ -108,7 +130,7 @@ Objetrouter.put("/:id", verifyToken,multer({ storage: storage }).single("image")
     username:req.body.username,
     userphone:req.body.userphone,
     adresse:req.body.adresse,
-    image: url + "/images/objets/" + req.file.filename,
+    image: url + "/images/objets/" + req.file?.filename,
   };
 
   objet.findOneAndUpdate(
