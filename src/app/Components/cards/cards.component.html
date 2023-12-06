@@ -1,7 +1,7 @@
 <br><br><br><br><br>
 <div class="search-bar-container">
-    <input type="text" placeholder="Rechercher..." [(ngModel)]="searchQuery" />
-    <button (click)="sortList()">Trier par ordre alphabétique</button>
+    <input type="text" placeholder="Rechercher..."  />
+    <button >Trier par ordre alphabétique</button>
   </div>
   
   <div class="clearfix"></div><br>
@@ -18,7 +18,8 @@
                 <p class="card-text">{{o.description}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button  id="liveToastBtn" data-id="1" data-price="109" data-product="Jeans" data-quantity="1" type="button" class="btn btn-sm btn-outline-secondary btn-success text-white">Add to Cart</button>
+                    <button  id="liveToastBtn" data-id="1" data-price="109" data-product="Jeans" data-quantity="1" type="submit"
+                     class="btn btn-sm btn-outline-secondary btn-success text-white" (click)="addToCart(o)">Add to Cart</button>
                   
                   </div>
                   <small class="text-muted ">{{o.price}}</small>

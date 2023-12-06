@@ -1019,4 +1019,19 @@ CSS STRUCTURE:
   .post-navigation:focus svg {
       fill: var(--primary-color);
   }
+  .cart-icon-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red; /* Choose your preferred background color */
+    color: white;
+    border-radius: 50%;
+    padding: 2px 1px;
+    font-size: 8px;
+  }
   

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PanierService } from 'src/app/Services/panier.service';
 import { ProduitService } from 'src/app/Services/produit.service';
 //import * as bootstrap from 'bootstrap';
 
@@ -9,19 +10,14 @@ import { ProduitService } from 'src/app/Services/produit.service';
 })
 export class CardsComponent implements OnInit {
   Objets:any=[];
-  constructor(private produitservice:ProduitService){
+  constructor(private produitservice:ProduitService, private panierservice: PanierService){
     this.getObjets();
   }
   ngOnInit(): void {
 
   }
-  itemList: string[] = ['Item C', 'Item A', 'Item B', 'Item D'];
-  filteredList: string[] = [...this.itemList];
-  searchQuery: string = '';
 
-  sortList() {
-    this.filteredList.sort();
-  }
+
 
   getObjets(){
     return this.produitservice.getAllProduit().subscribe((result) => {
@@ -29,5 +25,17 @@ export class CardsComponent implements OnInit {
       this.Objets = result.objets;
     });
   };
+  panier: any[] = [];
+
+  /*Objets:any[] = [
+    { id: 1, name: 'Jeans', price: 109, quantity: 1 },
+
+  ];*/
+
+  addToCart(objet : any) {
+localStorage.setItem("objets",JSON.stringify(objet))   
+  }
+
+
   }
 

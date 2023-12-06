@@ -22,6 +22,7 @@ import { CardsComponent } from './Components/cards/cards.component';
 import { LoginComponent } from './Components/login-livreur/login.component';
 import { SignupComponent } from './Components/signup-livreur/signup.component';
 import { RecoverPWDComponent } from './Components/recover-pwd-livreur/recover-pwd.component';
+import { PanierComponent } from './Components/panier/panier.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { RecoverPWDComponent } from './Components/recover-pwd-livreur/recover-pw
     CardsComponent,
     LoginComponent,
     SignupComponent,
-    RecoverPWDComponent
+    RecoverPWDComponent,
+    PanierComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ import { CardsComponent } from './Components/cards/cards.component';
 import { LoginComponent } from './Components/login-livreur/login.component';
 import { SignupComponent } from './Components/signup-livreur/signup.component';
 import { RecoverPWDComponent } from './Components/recover-pwd-livreur/recover-pwd.component';
+import { PanierComponent } from './Components/panier/panier.component';
 
 const routes: Routes = [
   {path:"auth",component:AuthentificationComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:"list", component:ListproduitComponent},
   {path:"edit-produit/:id" , component:EditProduitComponent},
   {path:"cards" , component:CardsComponent},
+  { path: "panier", component: PanierComponent },
 
   {path: 'login-liv' , component:LoginComponent},
   {path: 'signup-liv' , component:SignupComponent},
