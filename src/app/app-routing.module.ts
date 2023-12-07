@@ -22,6 +22,7 @@ const routes: Routes = [
   {path:"add-produit", component:AddProduitComponent},
   //{path:"home", component:HomeComponent}
   {path:"", component:HomeComponent},
+  //{path:"home", component:HomeComponent},
   {path:"list", component:ListproduitComponent},
   {path:"edit-produit/:id" , component:EditProduitComponent},
   {path:"cards" , component:CardsComponent},
@@ -31,7 +32,7 @@ const routes: Routes = [
   {path: 'signup-liv' , component:SignupComponent},
   {path: 'recover-pwd-liv' , component:RecoverPWDComponent},
 
-   {path:"**",pathMatch: 'full',component:ErrorPageComponent},
+  {path:"**",pathMatch: 'full',component:ErrorPageComponent},
 ];
 
 @NgModule({

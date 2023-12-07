@@ -25,15 +25,30 @@ export class CardsComponent implements OnInit {
       this.Objets = result.objets;
     });
   };
-  panier: any[] = [];
+  panier:Array<any>=[];
 
   /*Objets:any[] = [
     { id: 1, name: 'Jeans', price: 109, quantity: 1 },
 
   ];*/
 
-  addToCart(objet : any) {
-localStorage.setItem("objets",JSON.stringify(objet))   
+  addToCart(objet:any) {
+    /*
+    // Retrieve existing data from local storage
+     this.panier = JSON.parse(localStorage.getItem("objets") || '[]');
+  
+    // Append the new object to the existing data
+    for (let i = 0; i < this.panier.length; i++) {
+      if(objet._id===this.panier[i]._id){
+       return
+      }
+      
+    }
+    this.panier.push(objet)
+    // Store the updated data back in local storage
+    localStorage.setItem("objets", JSON.stringify(this.panier));
+    */
+   this.panierservice.addPanier(objet);
   }
 
 

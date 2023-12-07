@@ -6,10 +6,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class CartService {
-  Objets: any[]; 
 
-  constructor(private panierService: PanierService) {
-    this.Objets = panierService.getItemsFromCart();
+  constructor() {
+    
   }
 
   editProduit(productId: string) {
