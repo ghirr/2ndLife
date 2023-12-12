@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./error-page.component.css']
 })
 export class ErrorPageComponent {
-
+constructor(){
+  console.log("error page");
+  
+}
 }

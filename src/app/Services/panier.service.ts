@@ -1,66 +1,57 @@
+// cart.service.ts
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PanierService {
+  //private cart = JSON.parse(localStorage.getItem('objets') || '[]');;
+  private countSubject = new Subject<String>();
 
-  /*cartItems: any[] = [];
-  totalAmount: number | undefined;
 
-  constructor(private router: Router) { }
-
-  addItemsToCart = (product: { 
-    id: any;
-    nom: any;
-    prix: any;
-    description: any;
-    derniere_maj: any;
-    quantity: number;
-    url: any;
-    image: any;
-  }) => {
-    let productExists = false;
-    for (let i in this.cartItems) {
-      if (this.cartItems[i].id === product.id) {
-        this.cartItems[i].quantity++;
-        productExists = true;
-        this.getTotalAmount();
-        break;
+  getCount() {
+   return this.countSubject.asObservable();
+  }
+  addPanier(objet:any){
+     // Retrieve existing data from local storage
+    let panier = JSON.parse(localStorage.getItem("objets") || '[]');
+  
+    // Append the new object to the existing data
+    for (let i = 0; i < panier.length; i++) {
+      if(objet._id===panier[i]._id){
+       return
       }
+      
     }
-    if (!productExists) {
-      this.cartItems.push({
-        id: product.id,
-        nom: product.nom,
-        prix: product.prix,
-        description: product.description,
-        derniere_maj: product.derniere_maj,
-        quantity: 1,
-        url: product.url,
-        image: product.image
-      });
-    }
-    this.getTotalAmount();
+    panier.push(objet)
+    // Store the updated data back in local storage
+    localStorage.setItem("objets", JSON.stringify(panier));
+    this.countSubject.next(panier.length);
+    console.log(this.countSubject);
+    
+    this.getCount();
   }
 
-  getTotalAmount() {
-    if (this.cartItems) {
-      this.totalAmount = 0;
-      this.cartItems.forEach((item) => {
-        this.totalAmount! += (item.quantity * item.prix);
-      });
-      return {
-        totalAmount: this.totalAmount
-      };
-    }
+  deleteFromPanier(objet:any){
+      // Retrieve existing data from local storage
+      
+      let panier = JSON.parse(localStorage.getItem("objets") || '[]');
+  
+      // Append the new object to the existing data
+      for (let i = 0; i < panier.length; i++) {
+        if(objet._id===panier[i]._id){
+         panier.splice(i,1)
+        }
+        
+      }
+      
+      // Store the updated data back in local storage
+      localStorage.setItem("objets", JSON.stringify(panier));
+      this.countSubject.next(panier.length);
+      console.log(this.countSubject);
+      
+      this.getCount();
   }
-  
 
-  getItemsFromCart = () => {
-    return this.cartItems;
-  }*/
-  
-  // ... (rest of the methods remain the same)
 }
