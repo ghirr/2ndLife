@@ -33,7 +33,7 @@ export class CardsComponent implements OnInit {
   ];*/
 
   addToCart(objet : any) {
-localStorage.setItem("objets",JSON.stringify(objet))   
+localStorage.setItem("objets",JSON.stringify(objet)) 
   }
 
 
