@@ -28,6 +28,13 @@ export class EditProduitComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.productForm = this.formBuilder.group({
+      image: [this.produit.image, Validators.required],
+      nom: [this.produit.name, Validators.required],
+      description: [this.produit.description, Validators.required],
+      prix: [this.produit.price, Validators.required],
+      addresse: [this.produit.addresse, Validators.required]
+    });
    
   }
   getProjectById() {
@@ -42,16 +49,6 @@ export class EditProduitComponent implements OnInit {
   
   }
 
-  initializeForm() {
-    this.productForm = this.formBuilder.group({
-     // image1: [this.produit.image1, Validators.required],
-    //  image2: [this.produit.image2, Validators.required],
-      nom: [this.produit.name, Validators.required],
-      description: [this.produit.description, Validators.required],
-      prix: [this.produit.price, Validators.required],
-      addresse: [this.produit.addresse, Validators.required]
-    });
-  }
   onImageSelected(event: Event) {
     
     const target = event.target as HTMLInputElement;

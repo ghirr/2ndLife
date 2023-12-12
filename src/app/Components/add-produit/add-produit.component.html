@@ -1,99 +1,70 @@
-<!-- contact section -->
 <section class="contact_section layout_padding">
     <div class="container">
-        <div class="heading_container">
-            <br><br><br>
-            <h2>
-                Request A Call Back
-            </h2>
-        </div>
+      <div class="heading_container">
+        <br><br><br>
+        <h2>Request A Call Back</h2>
+      </div>
+      <div class="">
         <div class="">
-            <div class="">
-                <div class="row">
-                    <div class="col-md-9 mx-auto">
-                        <div class="contact-form">
-                            <form 
-                            #productForm="ngForm" (ngSubmit)="addEditProduit()" enctype="multipart/form-data">
-
-                                <div>
-                                    <br>
-                                    <main>
-                                        <section class="article">
-                                            <h2>Article de face</h2>
-                                            <div class="form-group">
-                                                <img src="assets/images/11.png" alt="Photo 1"
-                                                        style="cursor: pointer;">
-                                                    <input type="file" 
-                                                        #filePicker
-                                                            (change)="onImageSelected($event)" multiple/>
-                                                
-                                               <!---- <div *ngIf="image1.invalid && (image1.dirty || image1.touched)">
-                                                    <div *ngIf="image1.errors?.['required']">Image 1 is required.</div>
-                                                </div>-->
-                                            </div>
-                                        </section>
-
-                                   <!----    <section class="article">
-                                            <h2>Arrière de l'article</h2>
-                                            <form class="form-group">
-                                                <a href=""><img src="assets/images/11.png" alt="Photo 1"
-                                                        style="cursor: pointer;">
-                                                    <input type="file" [(ngModel)]="produit.image2" name="image2"
-                                                        #image2="ngModel" required />
-                                                </a>
-                                                <div *ngIf="image2.invalid && (image2.dirty || image2.touched)">
-                                                    <div *ngIf="image2.errors?.['required']">Image 2 is required.</div>
-                                                </div>
-                                            </form>
-                                        </section>-->
-                                    </main>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" placeholder="Nom Produit" [(ngModel)]="produit.name"
-                                        class="form-control" name="nom" >
-                                        <div class="text-danger" *ngIf="productForm.controls['nom']?.invalid &&(productForm.controls['nom']?.touched ||productForm.controls['nom']?.dirty)">
-                                            <div *ngIf="productForm.controls['nom'].errors?.['required']"  style="color: red"> Champs obligatoire</div>  
-                                        </div>
-                                </div>
-                                <div class="form-group">
-                                <textarea _ngcontent-serverapp-c40="" [(ngModel)]="produit.description"
-                                    class="form-control" name="description" placeholder="Description"
-                                    rows="5" maxlength="300" required=""
-                                    class="form-control ng-untouched ng-pristine ng-invalid"
-                                    style="width: 920px; height: 105px;"></textarea>
-                                    <!--div class="text-danger" *ngIf="productForm.controls['description'].touched">
-                                        <div *ngIf="productForm.controls['description'].errors?.['required']"> Champs obligatoire</div>
-                                    
-                                    </div-->
-                                </div>
-                                <div class="form-group">
-                                    <input type="number" placeholder="Prix" [(ngModel)]="produit.price"
-                                        class="form-control" name="prix">
-                                        <!--div class="text-danger" *ngIf="productForm.controls['prix'].touched">
-                                            <div *ngIf="productForm.controls['prix'].errors?.['required']"> Champs obligatoire</div>
-                                        
-                                        </div-->
-                                </div>
-                                <div>
-                                    <input type="text" placeholder="Addresse" [(ngModel)]="produit.adresse"
-                                        class="form-control" name="adresse">
-                                        <!--div class="text-danger" *ngIf="productForm.controls['addresse'].touched">
-                                            <div *ngIf="productForm.controls['addresse'].errors?.['required']"> Champs obligatoire</div>
-                                        
-                                        </div-->
-                                </div>
-
-                                <div class="d-flex justify-content-center">
-                                    <button type="submit" class="btn_on-hover">
-                                        Ajouter
-                                    </button>
-                                </div>
-                            </form>
+          <div class="row">
+            <div class="col-md-9 mx-auto">
+              <div class="contact-form">
+                <form [formGroup]="productForm" enctype="multipart/form-data">
+  
+                  <div>
+                    <br>
+                    <main>
+                      <section class="article">
+                        <h2>Article de face</h2>
+                        <div class="form-group">
+                          <img src="assets/images/11.png" alt="Photo 1" style="cursor: pointer;">
+                          <input type="file" formControlName="image" (change)="onImageSelected($event)" multiple/>
+                          <div *ngIf="productForm.controls['image'].invalid && ( productForm.controls['image'].dirty || productForm.controls['image'].touched)">
+                            <div *ngIf="productForm.controls['image'].errors?.['required'] "style="color: red">Image is required.</div>
+                          </div>
                         </div>
+                      </section>
+                    </main>
+                  </div>
+  
+                  <div class="form-group">
+                    <input type="text" placeholder="Nom Produit" formControlName="nom" class="form-control">
+                    <div class="text-danger" *ngIf="productForm.controls['nom'].invalid && ( productForm.controls['nom'].dirty || productForm.controls['nom'].touched)">
+                      <div *ngIf="productForm.controls['nom'].errors?.['required'] "style="color: red">Name is required.</div>
                     </div>
-                </div>
+                  </div>
+  
+                  <div class="form-group">
+                    <textarea formControlName="description" class="form-control" placeholder="Description" rows="5" maxlength="300"></textarea>
+                    <div class="text-danger" *ngIf="productForm.controls['description'].invalid && ( productForm.controls['description'].dirty || productForm.controls['description'].touched)">
+                        <div *ngIf="productForm.controls['description'].errors?.['required'] "style="color: red">Description is required.</div>
+                      </div>
+                  </div>
+  
+                  <div class="form-group">
+                    <input type="number" placeholder="Prix" formControlName="prix" class="form-control">
+                    <div class="text-danger" *ngIf="productForm.controls['prix'].invalid && ( productForm.controls['prix'].dirty || productForm.controls['prix'].touched)">
+                        <div *ngIf="productForm.controls['prix'].errors?.['required'] "style="color: red">Price is required.</div>
+                      </div>
+                  </div>
+  
+                  <div class="form-group">
+                    <input type="text" placeholder="Addresse" formControlName="adresse" class="form-control">
+                    <div class="text-danger" *ngIf="productForm.controls['adresse'].invalid && ( productForm.controls['adresse'].dirty || productForm.controls['adresse'].touched)">
+                        <div *ngIf="productForm.controls['adresse'].errors?.['required'] "style="color: red">Address is required.</div>
+                      </div>
+                  </div>
+  
+                  <div class="d-flex justify-content-center">
+                    <div class="form-group">
+                    <button type="submit" class="btn_on-hover" [disabled]="!productForm.valid"  (ngSubmit)="addEditProduit()">Ajouter</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
-
+      </div>
     </div>
-</section>
+  </section>

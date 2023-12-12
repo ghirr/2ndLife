@@ -32,12 +32,11 @@ export class AddProduitComponent {
       //this.title = "Ajouter un objet";
     }
     this.productForm = this.formBuilder.group({
-        //image1: ["", Validators.required], // Adjust this if needed
-      //  image2: ["", Validators.required], // Adjust this if needed
-        nom: ["", Validators.required],
-        description: ["", Validators.required],
-        prix: ["", Validators.required],
-        addresse: ["", Validators.required]
+      image: [null, Validators.required],
+      nom: ["", Validators.required],
+      description: ["", Validators.required],
+      prix: ["", Validators.required],
+      adresse: ["", Validators.required]
     });
   }
   onImageSelected(event: Event) {
