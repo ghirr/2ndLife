@@ -42,7 +42,7 @@ export class AuthentificationComponent {
     )
   }
   ngAfterViewInit() {
-    const signUpButton = this.el.nativeElement.querySelector('#signUp');
+    const signUpButton = this.el.nativeElement.querySelector('#goSignup');
     const signInButton = this.el.nativeElement.querySelector('#signIn');
     const container = this.el.nativeElement.querySelector('#container');
 
@@ -62,11 +62,9 @@ facebookSignup() {
   window.open("http://localhost:3000/auth/facebook", "_self");
 }
 login() {
-  if (this.isBlocked) {
-    this.errorMessage = 'Votre compte est bloqué. Réessayez plus tard.';
-    this.loginForm.disable();
-    return;
-  }
+ this.userService.loginUser(this.user).subscribe((res)=>{
+  this.errorMessage=res.message;
+ })
 }
 /*
   this.userService.login(this.user.email, this.user.password).subscribe(
@@ -91,7 +89,9 @@ openSnackBar(message: string) {
 
 signupUser(user:any){
   this.userService.addUser(user).subscribe((res) => {
-   
+    this.errorMessage=res.message;
+    console.log(this.errorMessage);
+    
     })
     
 

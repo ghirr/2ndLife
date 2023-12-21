@@ -67,9 +67,10 @@ Userrouter.get(
 Userrouter.post("/sign-up", async (req, res) => {
   const data = await User.findOne({ email: req.body.email });
   if (data?.email) {
-    res.status(200).json({
+    return res.status(200).json({
       message: "Email is Already used",
     });
+    
   } else {
     bcrypt.hash(req.body.password, 10, function (err, hash) {
       if (err) {
@@ -78,11 +79,12 @@ Userrouter.post("/sign-up", async (req, res) => {
         const user = new User({
           name: req.body.name,
           email: req.body.email,
+          phone:req.body.PhoneNumber,
           password: hash,
         });
 
         user.save().then(() => {
-          res.status(200).json({ message: "register successfully",user });
+         return res.status(200).json({ message: "register successfully",user });
         });
       }
     });
@@ -112,7 +114,9 @@ Userrouter.post("/sign-up", async (req, res) => {
         } else {
           let user = {
             name: findedUser.name,
-            email: findedUser.email
+            email: findedUser.email,
+            phone:findedUser.phone
+
           };
           
        let data= jwt.sign({

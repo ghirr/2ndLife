@@ -29,11 +29,11 @@ export class EditProduitComponent implements OnInit {
 
   ngOnInit() {
     this.productForm = this.formBuilder.group({
-      image: [this.produit.image, Validators.required],
+      image1: [this.produit.image, Validators.required],
       nom: [this.produit.name, Validators.required],
       description: [this.produit.description, Validators.required],
       prix: [this.produit.price, Validators.required],
-      addresse: [this.produit.addresse, Validators.required]
+      adresse: [this.produit.addresse, Validators.required]
     });
    
   }
@@ -60,7 +60,7 @@ export class EditProduitComponent implements OnInit {
   }
 
   editProduit() {
-    console.log('Here my edited object', this.produit);
+    this.produit.prod=this.productForm.value
     if (this.id) {
       // Edit existing product
       this.produitservice.editProduit(this.produit);

@@ -18,7 +18,7 @@ export class UserauthService {
   getUserData() {
     return this.httpClient.get(this.user_url+'/session-data',this.options).subscribe((data: any) => {
       if (data) {
-        sessionStorage.setItem('user',JSON.stringify(data));
+        localStorage.setItem('user',JSON.stringify(data));
       } else {
 console.log('lougha');
 
@@ -68,15 +68,18 @@ console.log('lougha');
     );
   }
   loginUser(user:any): Observable<{ message: any, user: any }> {
-    return this.httpClient.post<{ message: any, user: any }>(`${this.user_url}/login`, user).pipe(
+    return this.httpClient.post<{ message: any, user: any,token:any }>(`${this.user_url}/login`, user).pipe(
       map((res) => {
         if (res.user) {
           localStorage.setItem("connectedUser", JSON.stringify(res.user));
-          this.authlist.next(res.user.role);
+          console.log(res.token);
+          console.log(res.message);
+          
+          this.authlist.next(res.user);
           if (res.user.role==="admin") {
             this.router.navigate(['/dash']);
           } else {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/list']);
           }
         }
         return res;
@@ -88,7 +91,7 @@ console.log('lougha');
     return this.authlist.asObservable()
   }
   logout(){ 
-    this.router.navigate([''])
+    this.router.navigate(['/auth'])
 
     localStorage.removeItem("connectedUser")
     this.authlist.next("")

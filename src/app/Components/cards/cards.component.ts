@@ -27,13 +27,9 @@ export class CardsComponent implements OnInit {
   };
   panier: any[] = [];
 
-  /*Objets:any[] = [
-    { id: 1, name: 'Jeans', price: 109, quantity: 1 },
-
-  ];*/
 
   addToCart(objet : any) {
-localStorage.setItem("objets",JSON.stringify(objet)) 
+     this.panierservice.addPanier(objet);
   }
 
 

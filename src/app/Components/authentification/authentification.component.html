@@ -8,30 +8,32 @@
 				<a type="button" (click)="googleSignup()" class="social"><fa-icon [icon]="icons.g" ></fa-icon></a>
 			</div>
 			<span>or use your email for registration</span>
-			<input type="text" placeholder="Full Name" formControlName="name" />
-			<div class="text-danger" *ngIf="signupForm.controls['name'].invalid && ( signupForm.controls['name'].dirty || signupForm.controls['name'].touched) ">
+			<input type="text" placeholder="Full Name" id="name" formControlName="name" />
+			<div class="text-danger" id="wrongName" *ngIf="signupForm.controls['name'].invalid && ( signupForm.controls['name'].dirty || signupForm.controls['name'].touched) ">
 				<div style="color: red" *ngIf="signupForm.controls['name'].errors?.['minlength'] ">plus de 3 caracteres</div>
 			</div>
-			<input type="email" placeholder="Email" formControlName="email" />
-			<div class="text-danger"*ngIf="signupForm.controls['email'].invalid && ( signupForm.controls['email'].dirty || signupForm.controls['email'].touched) ">
-				<div style="color: red"
+			<input type="email" placeholder="Email" id="signupEmail" formControlName="email" />
+			<div id="wrongEmail" class="text-danger"*ngIf="signupForm.controls['email'].invalid && ( signupForm.controls['email'].dirty || signupForm.controls['email'].touched) ">
+				<div style="color: red" 
 				*ngIf="signupForm.controls['email'].errors?.['email'] "> Email should contain '@' && .com</div>
+				
 			</div>
-			<input type="tel" placeholder="Phone Number" formControlName="PhoneNumber" minlength="8" maxlength="8"/>
-			<div *ngIf="signupForm.controls['PhoneNumber'].invalid &&(signupForm.controls['PhoneNumber'].touched ||signupForm.controls['PhoneNumber'].dirty)">
-				<div style="color: red" *ngIf="signupForm.get('PhoneNumber')?.errors?.['minlength'] || signupForm.get('PhoneNumber')?.errors?.['maxlength']">numero 8 chiffres</div>
+			<div id="emailUsed" style="color: red;" *ngIf="errorMessage != ''">{{errorMessage}}</div>
+			<input type="tel" id="tel" placeholder="Phone Number" formControlName="PhoneNumber" minlength="8" maxlength="8"/>
+			<div id="wrongTel" *ngIf="signupForm.controls['PhoneNumber'].invalid &&(signupForm.controls['PhoneNumber'].touched ||signupForm.controls['PhoneNumber'].dirty)">
+				<div  style="color: red" *ngIf="signupForm.get('PhoneNumber')?.errors?.['minlength'] || signupForm.get('PhoneNumber')?.errors?.['maxlength']">numero 8 chiffres</div>
 				<div *ngIf="signupForm.get('PhoneNumber')!.hasError('invalidPhoneNumber')&&!(signupForm.get('PhoneNumber')?.errors?.['minlength'] || signupForm.get('PhoneNumber')?.errors?.['maxlength'])" style="color: red">invalid Phone Number</div>
 	 		</div>
-			<input type="password" placeholder="Password" formControlName="password" />
-			<div *ngIf="signupForm.controls['password'].invalid &&(signupForm.controls['password'].touched ||signupForm.controls['password'].dirty)">
-					<div *ngIf="signupForm.controls['password'].errors?.['minlength']" style="color: red">Password mast have at least 6 chas</div>
+			<input type="password" id="signupPasswoed" placeholder="Password" formControlName="password" />
+			<div id="wrongPassword" *ngIf="signupForm.controls['password'].invalid &&(signupForm.controls['password'].touched ||signupForm.controls['password'].dirty)">
+					<div *ngIf="signupForm.controls['password'].errors?.['minlength']" style="color: red" >Password mast have at least 6 chas</div>
 			   		<div *ngIf="signupForm.get('password')!.hasError('passwordStrength') && !signupForm.controls['password'].errors?.['minlength']" style="color: red">{{signupForm.get('password')!.errors?.['passwordStrength']}}</div>
 			</div>
-			<input type="password" placeholder="ConfirmPassword" formControlName="copassword"/>
-			<div class="text-danger" *ngIf="signupForm.controls['copassword'].invalid && ( signupForm.controls['copassword'].dirty || signupForm.controls['copassword'].touched) "> 
-				<div style="color: red" *ngIf="signupForm.controls['copassword'].errors?.['mustMatch']">must be identical </div>
+			<input type="password" id="ConfirmPassword" placeholder="ConfirmPassword" formControlName="copassword"/>
+			<div id="wrongConfirmPassword" class="text-danger" *ngIf="signupForm.controls['copassword'].invalid && ( signupForm.controls['copassword'].dirty || signupForm.controls['copassword'].touched) "> 
+				<div  style="color: red" *ngIf="signupForm.controls['copassword'].errors?.['mustMatch']">must be identical </div>
 			</div>
-			<button type="submit"
+			<button type="submit" id="signUp"
 			[hidden]="(signupForm.controls['password'].errors)||(signupForm.controls['copassword'].errors)||(signupForm.controls['email'].errors)||(signupForm.controls['name'].errors)||(signupForm.controls['PhoneNumber'].errors)"
 			(click)="signupUser(signupForm.value)"
 			>Sign Up</button>
@@ -45,10 +47,11 @@
 				<a type="button" (click)="googleSignup()" class="social"><fa-icon [icon]="icons.g" ></fa-icon></a>
 			</div>
 			<span>or use your account</span>
-			<input type="email" placeholder="Email"  [(ngModel)]="user.email" name="email"/>
-			<input type="password" placeholder="Password" [(ngModel)]="user.password" name="password"/>
+			<input type="email" id="email" placeholder="Email"  [(ngModel)]="user.email" name="email"/>
+			<input type="password" id="password" placeholder="Password" [(ngModel)]="user.password" name="password"/>
+			<div id="wrongLogin" style="color: red;" *ngIf="errorMessage != ''">{{errorMessage}}</div>
 			<a href="#">Forgot your password?</a>
-			<button type="submit">Sign In</button>
+			<button type="submit" id="login">Sign In</button>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -61,7 +64,7 @@
 			<div class="overlay-panel overlay-right">
 				<h1>Hello, Friend!</h1>
 				<p>Enter your personal details and start journey with us</p>
-				<button class="ghost" id="signUp">Sign Up</button>
+				<button class="ghost" id="goSignup">Sign Up</button>
 			</div>
 		</div>
 	</div>

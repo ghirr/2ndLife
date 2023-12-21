@@ -13,7 +13,7 @@
           </div>
         </div>
         <div  class="card rounded-3 mb-4" *ngFor="let o of Objets">
-          <div class="card-body p-4">
+          <div class="card-body p-4" id="item">
             <div class="row d-flex justify-content-between align-items-center">
               <div class="col-md-2 col-lg-2 col-xl-2">
                 <img src="{{o.image}}" class="img-fluid rounded-3" alt="Product Image">
@@ -22,15 +22,15 @@
                 <p class="lead fw-normal mb-2">
                   <span class="text-muted">Nom de l'article: </span>{{o.name}}
                 </p>
-                <p><span class="text-muted">Prix: </span>{{o.price}} dt</p>
+                <p id="price"><span class="text-muted">Prix: </span>{{o.price}} dt</p>
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <button (click)="editProduit(o._id)"
+                <button (click)="editProduit(o._id)" id="edit"
                 style="border:none; background-color: white; color: green;" > Modifier
                   <i class="fa fa-pencil" style="font-size:30px;color:rgb(24, 130, 24)"></i>
                 </button>
               </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                 <button (click)="deleteProduit(o._id)"
                  class="text-danger" style="border:none; background-color: white; color: red;">
                   Supprimer <i class="fa fa-trash" style="font-size:30px;color:red;"></i>

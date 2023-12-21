@@ -4,7 +4,7 @@
       <div class="heading_container">
         <br /><br /><br />
         <h2>
-            Request A Call Back
+            Modifier Produit
         </h2>
       </div>
       <div class="">
@@ -12,7 +12,7 @@
           <div class="row">
             <div class="col-md-9 mx-auto">
               <div class="contact-form">
-                <form #productForm="ngForm" (ngSubmit)="editProduit()">
+                <form [formGroup]="productForm" enctype="multipart/form-data" (ngSubmit)="editProduit()">
   
                     <div>
                         <br>
@@ -22,13 +22,12 @@
                               <div class="form-group">
                                   <img src="assets/images/11.png" alt="Photo 1"
                                           style="cursor: pointer;">
-                                      <input type="file" 
+                                      <input id="image" type="file" formControlName="image1"
                                           #filePicker
                                               (change)="onImageSelected($event)" multiple/>
                                   
-                                 <!---- <div *ngIf="image1.invalid && (image1.dirty || image1.touched)">
-                                      <div *ngIf="image1.errors?.['required']">Image 1 is required.</div>
-                                  </div>-->
+                                              <div id="validImage" *ngIf="productForm.controls['image1'].invalid && ( productForm.controls['image1'].dirty || productForm.controls['image1'].touched)"></div>
+                                                <div *ngIf="productForm.controls['image1'].errors?.['required'] "style="color: red">Image is required.</div>
                               </div>
                           </section>
 
@@ -49,42 +48,42 @@
                     </div>
   
                   <div class="form-group">
-                    <input type="text" placeholder="Nom Produit" [(ngModel)]="produit.name" class="form-control" name="nom" />
-                <!----    <div class="text-danger" *ngIf="productForm.controls['nom'].touched">
+                    <input id="nom" type="text" placeholder="Nom Produit" [(ngModel)]="produit.name" class="form-control" formControlName="nom" />
+                    <div id="vaidNom" class="text-danger" *ngIf="productForm.controls['nom'].touched">
                       <div *ngIf="productForm.controls['nom'].errors?.['required']">Champs obligatoire</div>
-                    </div>-->
+                    </div>
                   </div>
   
                   <div class="form-group">
-                    <textarea _ngcontent-serverapp-c40="" [(ngModel)]="produit.description"  [ngModelOptions]="{ standalone: true }"
-                        class="form-control" id="description" name="description" placeholder="Description"
+                    <textarea id="description" _ngcontent-serverapp-c40="" formControlName="description" [(ngModel)]="produit.description"  
+                        class="form-control"  id="description" name="description" placeholder="Description"
                         rows="5" maxlength="300" required=""
                         class="form-control ng-untouched ng-pristine ng-invalid"
                         style="width: 920px; height: 105px;"></textarea>
-                      <!---- <div class="text-danger" *ngIf="productForm.controls['description'].touched">
+                       <div id="validDescription" class="text-danger" *ngIf="productForm.controls['description'].touched">
                             <div *ngIf="productForm.controls['description'].errors?.['required']"> Champs obligatoire</div>
                         
-                        </div>-->
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="number" placeholder="Prix" [(ngModel)]="produit.price"  [ngModelOptions]="{ standalone: true }"
+                        <input type="number" placeholder="Prix" formControlName="prix" [(ngModel)]="produit.price"  
                             class="form-control" id="prix">
-                       <!----    <div class="text-danger" *ngIf="productForm.controls['prix'].touched">
+                          <div id="validPrice" class="text-danger" *ngIf="productForm.controls['prix'].touched">
                                 <div *ngIf="productForm.controls['prix'].errors?.['required']"> Champs obligatoire</div>
                             
-                            </div>-->
+                            </div>
                     </div>
                     <div>
-                        <input type="text" placeholder="Addresse" [(ngModel)]="produit.adresse"  [ngModelOptions]="{ standalone: true }"
+                        <input id="adresse" type="text" placeholder="Addresse" [(ngModel)]="produit.adresse"  formControlName="adresse"
                             class="form-control" id="adresse">
-                         <!----   <div class="text-danger" *ngIf="productForm.controls['addresse'].touched">
-                                <div *ngIf="productForm.controls['addresse'].errors?.['required']"> Champs obligatoire</div>
+                            <div id="validAdresse" class="text-danger" *ngIf="productForm.controls['adresse'].touched">
+                                <div *ngIf="productForm.controls['adresse'].errors?.['required']"> Champs obligatoire</div>
                             
-                            </div>-->
+                            </div>
                     </div>
   
                   <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn_on-hover">Enregistrer les modifications</button>
+                    <button id="button" type="submit" class="btn_on-hover" [disabled]="(productForm.controls['nom'].errors)||(productForm.controls['adresse'].errors)||(productForm.controls['prix'].errors)||(productForm.controls['image1'].errors)||(productForm.controls['description'].errors)">Enregistrer les modifications</button>
                   </div>
                 </form>
               </div>

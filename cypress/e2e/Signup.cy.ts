@@ -1,0 +1,42 @@
+describe('Signup spec', () => {
+  it('SignUp succeed', () => {
+    cy.visit('http://localhost:4200/auth')
+    cy.get('#goSignup').click()
+    cy.get('#name').type('moemen')
+    cy.get('#signupEmail').type('moemen@gmail.com')
+    cy.get('#tel').type('58690750')
+    cy.get('#signupPasswoed').type('Moemen02#@')
+    cy.get('#ConfirmPassword').type('Moemen02#@')
+    cy.get('#signUp').click()
+    cy.visit('http://localhost:4200/list')
+
+  })
+  it('wrong inputs', () => {
+    cy.visit('http://localhost:4200/auth')
+    cy.get('#goSignup').click()
+    cy.get('#name').type('a')
+    cy.get('#signupEmail').type('a')
+    cy.get('#tel').type('1')
+    cy.get('#signupPasswoed').type('a')
+    cy.get('#ConfirmPassword').type('b')
+    cy.get('#wrongName')
+    cy.get('#wrongEmail')
+    cy.get('#wrongTel')
+    cy.get('#wrongPassword')
+    cy.get('#name').type('a')
+    cy.get('#wrongConfirmPassword')
+
+  })
+  it('Email is used', () => {
+    cy.visit('http://localhost:4200/auth')
+    cy.get('#goSignup').click()
+    cy.get('#name').type('moemen')
+    cy.get('#signupEmail').type('taha@gmail.com')
+    cy.get('#tel').type('58690750')
+    cy.get('#signupPasswoed').type('Moemen02#@')
+    cy.get('#ConfirmPassword').type('Moemen02#@')
+    cy.get('#signUp').click()
+    cy.get('#emailUsed')
+
+  })
+})

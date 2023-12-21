@@ -42,11 +42,12 @@ Objetrouter.post(
     let url = req.protocol + "://" + req.get("host");
     const Objet = new objet({
         name: req.body.name,
-        categorie: req.body.categorie,
+      //  categorie: req.body.categorie,
         price: req.body.price,
         description: req.body.description,
         username:req.body.username,
         userphone:req.body.userphone,
+        useremail:req.body.useremail,
         adresse:req.body.adresse,
         image: url + "/images/objets/" + req.file?.filename,
     });
@@ -159,6 +160,16 @@ Objetrouter.put("/:id"
     });
 });
 
-
+//   trait logique get objets by userEmail
+Objetrouter.get("/own/:email"
+//,verifyToken
+,(req, res) => {
+    objet.find({useremail:req.params.email}).populate().then((findedObject) => {
+    res.status(200).json({
+        objets: findedObject,  
+    });
+    return;
+  });
+});
 
 module.exports = Objetrouter;

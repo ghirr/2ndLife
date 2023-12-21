@@ -18,7 +18,7 @@ const objetSchema= mongoose.Schema({
         type: String,
         required: true,
     },
-    /*
+    
     username:{
         type: String,
         required: true,
@@ -26,7 +26,11 @@ const objetSchema= mongoose.Schema({
     userphone:{
         type: String,
         required: true,
-    },*/
+    },
+    useremail:{
+        type: String,
+        required: true,
+    },
     adresse:String,
 
 })

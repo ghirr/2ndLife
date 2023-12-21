@@ -18,7 +18,8 @@ export class ListproduitComponent {
   }
 
   getAllProduit() {
-    this.produitservice.getAllProduit().subscribe(
+    let user = JSON.parse(localStorage.getItem("connectedUser") || '{}')
+    this.produitservice.getProduitByUserEmail(user.email).subscribe(
       (result) => {
         console.log("here", result.objets);
         this.Objets = result.objets;

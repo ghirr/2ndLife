@@ -13,7 +13,7 @@
                       <h6 class="mb-0 text-muted">{{count}} items</h6>
                     </div>
                     <div style="overflow-y: auto; max-height: 400px;overflow-x: hidden;" >
-                      <div *ngIf="count===0" style="display: flex; justify-content: space-around;">
+                      <div id="feragh" *ngIf="count===0" style="display: flex; justify-content: space-around;">
                         <img src="assets/images/nodata.jpg"  style="max-height: 200px;"/>
                         <h1 style="color: rgb(165, 159, 159);align-items: center;margin-top: 100px;">Go Get some Items</h1>
                       </div>
@@ -48,7 +48,7 @@
                         <h6 class="mb-0">€ {{o.price}}</h6>
                       </div>
                       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a type="button" (click)="delete(o)" class="text-muted"><fa-icon [icon]="icons.p"  style="color: red; margin-right: 20px;"></fa-icon></a>
+                        <a type="button" id="delete" (click)="delete(o)" class="text-muted"><fa-icon [icon]="icons.p"  style="color: red; margin-right: 20px;"></fa-icon></a>
                       </div>
                     </div>
   

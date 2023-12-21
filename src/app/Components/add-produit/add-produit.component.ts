@@ -20,19 +20,8 @@ export class AddProduitComponent {
     private router:Router) { }
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (this.id) {
-      //this.title = "Modifier produit";
-      this.produitservice.getProduitById(this.id).subscribe(
-        (data: any)=> {
-          this.router.navigate;
-        }
-      )
-    } else {
-      //this.title = "Ajouter un objet";
-    }
     this.productForm = this.formBuilder.group({
-      image: [null, Validators.required],
+      image1: [null, Validators.required],
       nom: ["", Validators.required],
       description: ["", Validators.required],
       prix: ["", Validators.required],
@@ -49,16 +38,9 @@ export class AddProduitComponent {
     reader.readAsDataURL(file);
   }
   addEditProduit(){
+    this.produit.prod=this.productForm.value;
+    this.produit.user = JSON.parse(localStorage.getItem("connectedUser") || '{}')
     console.log('Here my object', this.produit);
-      // add produit
-      let formData = new FormData();
-    formData.append('image', this.produit.image);
-    formData.append('name', this.produit.name);
-  //  formData.append('catagorie', produit.catagorie);
-    formData.append('description', this.produit.description);
-    formData.append('price', this.produit.price);
-    formData.append('adresse', this.produit.adresse);
-    console.log(formData);
     
       this.produitservice.addProduit(this.produit)
          this.router.navigate(["/list"]);

@@ -620,6 +620,9 @@ CSS STRUCTURE:
   .offcanvas.show .nav-item a.nav-link {
       font-size: 2em;
   }
+  .offcanvas-body{
+    margin-left: 70px;
+  }
   .offcanvas.show .offcanvas-body .navbar-nav {
       align-items: unset!important;
       padding-left: 20px;

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,11 @@ export class ProduitService {
   prodURL:string="http://localhost:3000/objet/";
 
   constructor(private httpClient:HttpClient) { }
-  getAllProduit(){
+  getAllProduit(): Observable<any>{
     return this.httpClient.get<{ objets: any }>(this.prodURL);
+  }
+  getProduitByUserEmail(email:any): Observable<any>{
+    return this.httpClient.get<{ objets: any }>(`${this.prodURL}/own/${email}`);
   }
 
   getProduitById(id: any){
@@ -26,11 +30,14 @@ export class ProduitService {
     
     let formData:any = new FormData();
     formData.append('image', produit.image);
-    formData.append('name', produit.name);
+    formData.append('name', produit.prod.nom);
   //  formData.append('catagorie', produit.catagorie);
-    formData.append('description', produit.description);
-    formData.append('price', produit.price);
-    formData.append('adresse', produit.adresse);
+    formData.append('description', produit.prod.description);
+    formData.append('price', produit.prod.prix);
+    formData.append('adresse', produit.prod.adresse);
+    formData.append('username', produit.user.name);
+    formData.append('userphone', produit.user.phone);
+    formData.append('useremail', produit.user.email);
     console.log(formData);
     /*
     const headers = new HttpHeaders();
@@ -60,11 +67,11 @@ export class ProduitService {
     
     let formData:any = new FormData();
     formData.append('image', produit.image);
-    formData.append('name', produit.name);
+    formData.append('name', produit.prod.nom);
   //  formData.append('catagorie', produit.catagorie);
-    formData.append('description', produit.description);
-    formData.append('price', produit.price);
-    formData.append('adresse', produit.adresse);
+    formData.append('description', produit.prod.description);
+    formData.append('price', produit.prod.prix);
+    formData.append('adresse', produit.prod.adresse);
     console.log(formData);
     /*
     const headers = new HttpHeaders();
