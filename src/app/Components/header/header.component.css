@@ -9,8 +9,9 @@
   padding: 3px;
   margin-left: 2px;
   min-width: 200px;
+  min-height: 40px;
   border-radius: 20px;
-  transition: background-color 0.3s;
+  transition: 0.6s;
 }
 .profile:hover{
   background-color: var(--primary-color);

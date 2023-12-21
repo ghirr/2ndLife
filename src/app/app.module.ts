@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//Angular Material
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,7 +44,7 @@ import { PanierComponent } from './Components/panier/panier.component';
     LoginComponent,
     SignupComponent,
     RecoverPWDComponent,
-    PanierComponent
+    PanierComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { PanierComponent } from './Components/panier/panier.component';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

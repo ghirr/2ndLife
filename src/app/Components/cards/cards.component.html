@@ -1,6 +1,6 @@
 <br><br><br><br><br>
 <div class="search-bar-container">
-    <input type="text" placeholder="Rechercher..."  />
+    <input type="text" (keyup)="rechercher($event)" placeholder="Rechercher..."  />
     <button >Trier par ordre alphabétique</button>
   </div>
   
@@ -8,10 +8,9 @@
   
   <div class="items container" style="width:80%">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
-          <div class="col" *ngFor="let o of Objets">
+          <div class="col" *ngFor="let o of FilterObjets.slice(paginator.pageIndex * paginator.pageSize, (paginator.pageIndex + 1) * paginator.pageSize)">
             <div class="card shadow-sm">
-              <img [src]="o.image" style="
-              height: 220px;">
+              <img [src]="o.image">
               <div class="card-body">
                 <span class="text-muted fs-6">{{o.name}}</span>
                 <h6> {{o.adresse}}</h6>
@@ -22,10 +21,11 @@
                      class="btn btn-sm btn-outline-secondary btn-success text-white" (click)="addToCart(o)">Add to Cart</button>
                   
                   </div>
-                  <small class="text-muted ">{{o.price}}</small>
+                  <small class="text-muted ">{{o.price}} dt</small>
                 </div>
               </div>
             </div>
+            
           </div>
        <!---  <div class="col">
             <div class="card shadow-sm">
@@ -131,6 +131,13 @@
           </div> -->
   
   </div>
+  <mat-paginator  #paginator 
+  class="demo-paginator" [length]="totalItems" [pageSize]="pageSize" 
+  [pageSizeOptions]="pageSizeOptions" 
+  [disabled]="false"
+  [showFirstLastButtons]="true"
+  aria-label="Select page"
+  (page)="handlePageEvent($event)"></mat-paginator>
   </div>
   
   <br>

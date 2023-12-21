@@ -28,5 +28,17 @@
   color: #000;
   font-weight:bold;
 }
+.demo-paginator{
+  justify-content: center;
+  display: flex;
+  width: 600px;
+  margin: 20px 180px;
+  font-size: larger;}
+
+ .shadow-sm img {
+    height: 220px;
+    width: 100%;
+    background-image: cover;
+  }
 
   
