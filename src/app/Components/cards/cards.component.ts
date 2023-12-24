@@ -14,6 +14,10 @@ export class CardsComponent implements OnInit {
   pageSizeOptions= [6,9];
   @ViewChild(MatPaginator) paginator!: MatPaginator ;
   FilterObjets: any=[];
+  totalItems: number = 0;
+  pageSize: number = 6;
+  pageEvent!: PageEvent;
+  panier: any[] = [];
   constructor(private produitservice:ProduitService, private panierservice: PanierService){
    
   }
@@ -23,8 +27,7 @@ export class CardsComponent implements OnInit {
 
 
 
-  totalItems: number = 0;
-  pageSize: number = 6;
+  
 
   getObjets(){
     return this.produitservice.getAllProduit().subscribe((result) => {
@@ -37,7 +40,6 @@ export class CardsComponent implements OnInit {
     });
   };
 
-  pageEvent!: PageEvent;
 
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
@@ -65,7 +67,6 @@ export class CardsComponent implements OnInit {
   }
   
 
-  panier: any[] = [];
 
 
   addToCart(objet : any) {

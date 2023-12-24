@@ -621,7 +621,14 @@ CSS STRUCTURE:
       font-size: 2em;
   }
   .offcanvas-body{
-    margin-left: 70px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .offcanvas-body #navbar ul{
+    margin-right: 150px;
+  }
+  .offcanvas-body #navbar ul ~ li{
+    margin-left: -100px;
   }
   .offcanvas.show .offcanvas-body .navbar-nav {
       align-items: unset!important;

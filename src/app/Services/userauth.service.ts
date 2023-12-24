@@ -87,6 +87,26 @@ console.log('lougha');
     );
   }
 
+  gogeLogin(user:any): Observable<{ message: any, user: any }> {
+    return this.httpClient.post<{ message: any, user: any,token:any }>(`${this.user_url}/login`, user).pipe(
+      map((res) => {
+        if (res.user) {
+          localStorage.setItem("connectedUser", JSON.stringify(res.user));
+          console.log(res.token);
+          console.log(res.message);
+          
+          this.authlist.next(res.user);
+          if (res.user.role==="admin") {
+            this.router.navigate(['/dash']);
+          } else {
+            this.router.navigate(['/list']);
+          }
+        }
+        return res;
+      })
+    );
+  }
+
   serviceToHeader(){
     return this.authlist.asObservable()
   }

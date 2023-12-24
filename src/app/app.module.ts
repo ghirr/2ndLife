@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthentificationComponent } from 'src/app/Components/authentification/authentification.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NavbarComponent } from 'src/app/Components/navbar/navbar.component';
 import { ErrorPageComponent } from 'src/app/Components/error-page/error-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashAdminComponent } from 'src/app/Components/dash-admin/dash-admin.component';
@@ -25,13 +24,13 @@ import { LoginComponent } from './Components/login-livreur/login.component';
 import { SignupComponent } from './Components/signup-livreur/signup.component';
 import { RecoverPWDComponent } from './Components/recover-pwd-livreur/recover-pwd.component';
 import { PanierComponent } from './Components/panier/panier.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthentificationComponent,
-    NavbarComponent,
     ErrorPageComponent,
     DashAdminComponent,
     HeaderComponent,
@@ -45,6 +44,7 @@ import { PanierComponent } from './Components/panier/panier.component';
     SignupComponent,
     RecoverPWDComponent,
     PanierComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ const passport = require("passport");
 const Userrouter = require("./routes/auth");
 const Livreurrouter=require("./routes/livreurRoute");
 const Objetrouter = require("./routes/objetRoute");
+const Vendrerouter=require("./routes/Vendre")
 
 // creation app express
 const app = express();
@@ -87,7 +88,8 @@ app.use(passport.session())
 
 app.use("/auth", Userrouter);
 app.use("/livreur", Livreurrouter);
-app.use("/objet",Objetrouter)
+app.use("/objet",Objetrouter);
+app.use("/vendre",Vendrerouter);
 
 
   module.exports= app;

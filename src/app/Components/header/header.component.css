@@ -52,4 +52,8 @@ display: none;}
     padding: 1px 1px;
     font-size: 11px;
   }
+  #header{
+    z-index: 1000;
+  }
+
   

@@ -12,9 +12,11 @@ import { LoginComponent } from './Components/login-livreur/login.component';
 import { SignupComponent } from './Components/signup-livreur/signup.component';
 import { RecoverPWDComponent } from './Components/recover-pwd-livreur/recover-pwd.component';
 import { PanierComponent } from './Components/panier/panier.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 const routes: Routes = [
   {path:"auth",component:AuthentificationComponent},
+  {path:"profile",component:ProfileComponent},
   
   //{path:"home",component:HomeComponent},
   {path:"dash",component:DashAdminComponent},

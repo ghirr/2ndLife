@@ -24,8 +24,10 @@ Userrouter.get("/login/success", (req, res) => {
       if (err) {
         return res.status(401).json({ success: false, message: "Login failed" });
       }
-
-      res.redirect("http://localhost:4200/home");
+      res.status(200).json({
+        user:req.user
+      })
+      res.redirect("http://localhost:4200/");
     });
   }else{
     console.log(req.session);

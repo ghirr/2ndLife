@@ -1,0 +1,12 @@
+.demo-paginator{
+    justify-content: center;
+    display: flex;
+    width: 600px;
+    margin: 20px 180px;
+    font-size: larger;
+background-color: #eee;}
+.select{
+    width:fit-content;
+    border-radius: 5px;
+    padding: 3px;
+}
