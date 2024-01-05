@@ -11,7 +11,7 @@
             <form [formGroup]="signupForm">
                 <div class="form-group">
 
-                    <input type="text" id="username" ngModel name="username" formControlName="username" required
+                    <input type="text" id="username"  name="username" formControlName="username" required
                         placeholder="Username">
                     <div
                         *ngIf="signupForm.controls['username'].invalid && (signupForm.controls['username'].dirty || signupForm.controls['username'].touched)">
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" id="numCIN" ngModel name="numCIN" formControlName="numCIN" required
+                    <input type="text" id="numCIN"  name="numCIN" formControlName="numCIN" required
                         placeholder="CIN Number">
                     <div
                         *ngIf="signupForm.controls['numCIN'].invalid && (signupForm.controls['numCIN'].dirty || signupForm.controls['numCIN'].touched)">
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" id="numTel" ngModel name="numTel" formControlName="numTel" required
+                    <input type="text" id="numTel"  name="numTel" formControlName="numTel" required
                         placeholder="Phone Number">
                     <div
                         *ngIf="signupForm.controls['numTel'].invalid && (signupForm.controls['numTel'].dirty || signupForm.controls['numTel'].touched)">
@@ -96,7 +96,7 @@
                     </div>
                 </div>
 
-                <button type="submit" [disabled]="signupForm.invalid" (click)="addUser(signupForm.value)"
+                <button type="submit" (click)="addUser(signupForm.value)"
                     class="btn-signin">Sign Up</button>
 
                 <div class="signup-option">

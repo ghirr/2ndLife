@@ -1,9 +1,8 @@
 const Objet = require('../models/Objet');
 
 const testObjetStatus= async(req,res,next)=>{
-    console.log(req.body.ids);
     console.log(req.body);
-    const objetsIds=req.body.ids;
+    const objetsIds=req.body;
     const notFound=[];
 
     try{

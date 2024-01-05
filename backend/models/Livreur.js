@@ -11,11 +11,7 @@ const livreurSchema = new Schema({
         required:true,
         unique:true
     },
-    firstname: {
-        type: String,
-        required: true
-    },
-    lastname: {
+    username: {
         type: String,
         required: true
     },
@@ -25,6 +21,7 @@ const livreurSchema = new Schema({
     password: {
         type: String,
         select: true,
-    }
+    },
+    numTel:String
 });
 module.exports = mongoose.model('livreur', livreurSchema);

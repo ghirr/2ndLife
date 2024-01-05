@@ -13,7 +13,7 @@ const userSchema = new Schema({
     },
     phone: {
         type: String,
-        required: true
+       // required: true
     },
     photo: {
         type: String,
@@ -22,6 +22,11 @@ const userSchema = new Schema({
         type: String,
         select: true,
     },
+    adresse:{
+        type:String,
+        default:'Tunisie,Tunis'
+    }
+    ,
     role: {
         type: String,
         enum: ['user', 'admin'],

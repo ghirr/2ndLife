@@ -1,0 +1,46 @@
+
+section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card {
+    display: flex;
+    flex-direction: row;
+    width: 80%; /* Ajustez la largeur selon vos besoins */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    
+  }
+
+  .button {
+    padding: 2px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 30px;
+    height: 50px;
+    justify-content: center;
+  }
+
+  .accept {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .reject {
+    background-color: #f44336;
+    color: white;
+  }

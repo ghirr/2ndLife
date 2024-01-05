@@ -56,8 +56,10 @@ export class AuthentificationComponent {
   }
 
   googleSignup() {
-    window.open("http://localhost:3000/auth/google", "_self");
-}
+    this.userService.loginSuccess().subscribe((res)=>{
+      this.errorMessage=res.message;
+     })
+    }
 facebookSignup() {
   window.open("http://localhost:3000/auth/facebook", "_self");
 }

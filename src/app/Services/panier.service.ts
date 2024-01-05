@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 })
 export class PanierService {
   //private cart = JSON.parse(localStorage.getItem('objets') || '[]');;
-  private countSubject = new Subject<String>();
+  public countSubject = new Subject<String>();
 
 
   getCount() {

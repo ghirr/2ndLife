@@ -58,8 +58,8 @@
                 <li class="nav-item" >
                   <a class="nav-link me-4 active" [routerLinkActiveOptions]="{exact:true}" routerLink="/" routerLinkActive="active">Home</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link me-4" href="#company-services">Services</a>
+                <li class="nav-item" *ngIf="connectedUser.role=='livreur'">
+                  <a class="nav-link me-4" routerLink="/dash-liv">Livraisons</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link me-4" routerLink="/cards">Products</a>
@@ -73,7 +73,7 @@
                 <li class="nav-item">
                   <a class="nav-link me-4" href="#latest-blog">Blog</a>
                 </li>
-                <li class="nav-item dropdown" *ngIf="connectedUser.name">
+                <li class="nav-item dropdown" *ngIf="connectedUser.role=='user'">
                   <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">My products</a>
                   <ul class="dropdown-menu">
                     <li>
@@ -84,7 +84,7 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item" *ngIf="connectedUser.name" >
+                <li class="nav-item" *ngIf="!(connectedUser.role=='admin')" >
                   <a routerLink="/profile">
                   <div class="user-items ps-5">
                     <div class="profile">
@@ -105,7 +105,7 @@
                             <use xlink:href="#search"></use>
                           </svg>
                         </a>
-                      </li> --> <li class="pe-3" id="panier">
+                      </li> --> <li class="pe-3" id="panier" *ngIf="!(connectedUser.role=='livreur')">
                         <a routerLink="panier" class="cart-icon-container">
                           <span class="badge">{{count}}</span> <!-- Replace '3' with the actual item count -->
                           <fa-icon [icon]="fa.panier" ></fa-icon>

@@ -1,0 +1,13 @@
+<br><br><br><br><br>
+<section *ngFor="let l of livraisons ">
+<div class="card">
+    <div class="content">
+      <!-- Contenu de la carte (80% de la largeur) -->
+      <h2>From {{l.adresse}}  To {{l.costumeradresse}}</h2>
+      <p>Contenu de la livraison...</p>
+    </div>
+      <!-- Bouton d'acceptation -->
+      <button class="button accept" onclick="acceptAction()"><fa-icon [icon]="icons.check" ></fa-icon></button>
+  </div>
+</section>
+<br><br><br><br><br>

@@ -32,6 +32,8 @@ const objetSchema= mongoose.Schema({
         required: true,
     },
     adresse:String,
+    vendu:Boolean,
+    costumer:Object
 
 })
 

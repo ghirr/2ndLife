@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/Services/user-service.service';
+import { UserauthService } from 'src/app/Services/userauth.service';
 import { MustMatch, NumCINValidator, NumTelValidator } from 'src/app/shared/confirmPwd';
 
 @Component({
@@ -15,7 +16,7 @@ export class SignupComponent implements OnInit{
   signupForm !: FormGroup;
 
 constructor(private fb: FormBuilder,
-  private userService: UserService,
+  private userService:UserauthService,
   private router: Router){}
  
     ngOnInit() {
@@ -24,7 +25,7 @@ constructor(private fb: FormBuilder,
         numCIN: ['', [Validators.required, NumCINValidator()]], 
         numTel: ['', [Validators.required, NumTelValidator()]], 
         email: ['', [Validators.email, Validators.required]],
-        password: ['', [Validators.minLength(20), Validators.required]],
+        password: ['', [ Validators.required]],
         confirmPwd: ['', [Validators.maxLength(20), Validators.required]],
       },
       
@@ -35,30 +36,14 @@ constructor(private fb: FormBuilder,
       
     }
     addUser(user: any) {
-      this.userService.addUser(user).subscribe(
-        () =>{
-          this.router.navigate(['']);
+      this.userService.addLivreur(user).subscribe(
+        (res) =>{
+          console.log(res.message);
+          
         }
       )
     }
   
-   /* addUser(user: any) {
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        })
-      };
-  
-      this.userService.addUser(user).subscribe(
-        () => {
-          this.router.navigate(['admin']);
-        }
-      );
-    }
-    
-   signup(user) {
-    this.addUser(user);
-  }*/
  onSubmit(form: NgForm) {
     if (form.valid) {
       console.log('Form Submitted!');

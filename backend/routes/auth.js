@@ -24,15 +24,15 @@ Userrouter.get("/login/success", (req, res) => {
       if (err) {
         return res.status(401).json({ success: false, message: "Login failed" });
       }
-      res.status(200).json({
-        user:req.user
-      })
-      res.redirect("http://localhost:4200/");
+
+      // Redirect to client side with user information
+    return  res.render(CLIENT_URL,req.user)
     });
-  }else{
+  } else {
     console.log(req.session);
   }
 });
+
 
 /*Userrouter.get("/login/failed", (req, res) => {
   res.status(401).json({
@@ -117,7 +117,8 @@ Userrouter.post("/sign-up", async (req, res) => {
           let user = {
             name: findedUser.name,
             email: findedUser.email,
-            phone:findedUser.phone
+            phone:findedUser.phone,
+            adresse:findedUser.adresse
 
           };
           

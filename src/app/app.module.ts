@@ -25,6 +25,7 @@ import { SignupComponent } from './Components/signup-livreur/signup.component';
 import { RecoverPWDComponent } from './Components/recover-pwd-livreur/recover-pwd.component';
 import { PanierComponent } from './Components/panier/panier.component';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { DashLivComponent } from './Components/dash-liv/dash-liv.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
     RecoverPWDComponent,
     PanierComponent,
     ProfileComponent,
+    DashLivComponent,
   ],
   imports: [
     BrowserModule,

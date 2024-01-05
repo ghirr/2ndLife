@@ -87,24 +87,34 @@ console.log('lougha');
     );
   }
 
-  gogeLogin(user:any): Observable<{ message: any, user: any }> {
-    return this.httpClient.post<{ message: any, user: any,token:any }>(`${this.user_url}/login`, user).pipe(
-      map((res) => {
-        if (res.user) {
-          localStorage.setItem("connectedUser", JSON.stringify(res.user));
-          console.log(res.token);
-          console.log(res.message);
-          
-          this.authlist.next(res.user);
-          if (res.user.role==="admin") {
+  loginSuccess(): Observable<{ message: any, user: any }> {
+    const openedWindow = window.open("http://localhost:3000/auth/google", "_self");
+  
+    if (openedWindow) {
+      console.log("wselette");
+      
+      return new Observable((observer) => {
+        openedWindow.addEventListener('beforeunload', () => {
+          // Effectuez vos actions ici après que la fenêtre est fermée
+          const connectedUser = JSON.parse(localStorage.getItem("connectedUser") || '{}');
+          if (connectedUser && connectedUser.role === "admin") {
             this.router.navigate(['/dash']);
           } else {
             this.router.navigate(['/list']);
           }
-        }
-        return res;
-      })
-    );
+  
+          // Vous pouvez émettre n'importe quelle valeur ici, ajustez en fonction de vos besoins
+          const emittedValue = { message: 'Votre message', user: connectedUser };
+  
+          // Émettez la valeur souhaitée via l'observable
+          observer.next(emittedValue);
+          observer.complete();
+        });
+      });
+    } else {
+      // Retournez un observable avec une valeur null si la fenêtre ne peut pas être ouverte
+      return of({ message: null, user: null });
+    }
   }
 
   serviceToHeader(){
@@ -115,5 +125,41 @@ console.log('lougha');
 
     localStorage.removeItem("connectedUser")
     this.authlist.next("")
+  }
+  addLivreur(user: any) {
+    return this.httpClient.post("http://localhost:3000/livreur/signup", user).pipe(
+      switchMap((res:any) => {console.log(res);
+          
+        if (res.livreur) {
+          
+          return this.loginLivreur(user).pipe(
+            map((loginRes) => {
+              return { message: res.message, user: loginRes.user };
+            })
+          );
+        } else {
+          return of(res);
+        }
+      })
+    ); 
+  }
+
+
+  loginLivreur(user: any){
+    return this.httpClient.post<any>("http://localhost:3000/livreur/login", user).pipe(
+      map((res) => {
+        console.log(res);
+        
+        if (res.user) {
+          localStorage.setItem("connectedUser", JSON.stringify(res.user));
+          console.log(res.token);
+          console.log(res.message);
+          
+          this.authlist.next(res.user);
+          this.router.navigate(['/dashLivreur']);
+        }
+        return res;
+      })
+    );
   }
 }

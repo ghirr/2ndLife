@@ -11,10 +11,10 @@
             <div class="or"><span></span></div>
 
 
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <input type="text" formControlName="username" placeholder="Username">
+            <form [formGroup]="loginForm" >
+                <input type="text" formControlName="email" placeholder="email">
                 <input type="password" formControlName="password" placeholder="Password">
-                <button type="submit" class="btn-signin">Login</button>
+                <button type="submit" class="btn-signin" (click)="loginUser(loginForm.value)">Login</button>
             </form>
             <a routerLink="/recover-pwd-liv" class="nav-link" class="btn-reset btn-fade">Recover your password</a>
         </div>
