@@ -58,7 +58,9 @@ export class PanierComponent implements OnInit {
         console.log("dkhalet");
     
         localStorage.removeItem("objets");
-    
+        this.getObjets();
+            this.count=0;
+
         // Utilisation de await ici
         this.payementService.achatProduit(this.ids, this.connectedUser, this.livraison);
     

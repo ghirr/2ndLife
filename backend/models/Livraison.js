@@ -5,11 +5,15 @@ const livraisonSchema= mongoose.Schema({
         type: String,
         required: true,
     },
-    Objectprice:{
-        type: Number,
+    ObjectUsername:{
+        type: String,
         required: true,
     },
     ObjectAdresse:{
+        type: String,
+        required: true,
+    },
+    ObjectPhone:{
         type: String,
         required: true,
     },

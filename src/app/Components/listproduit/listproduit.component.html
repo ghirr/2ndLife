@@ -8,7 +8,7 @@
           <div>
             <p class="mb-0">
               <span class="text-muted">Sort by:</span>
-              <select class="select">
+              <select class="select" [(ngModel)]="selectedOption" (change)="onOptionChange()">
                 <option selected value="0">mes articles</option>
                 <option value="1">articles vendus</option>
                 <option value="2">articles en cours</option>
@@ -16,7 +16,7 @@
             </p>
           </div>
         </div>
-        <div  class="card rounded-3 mb-4" *ngFor="let o of Objets.slice(paginator.pageIndex * paginator.pageSize, (paginator.pageIndex + 1) * paginator.pageSize)">
+        <div  class="card rounded-3 mb-4" *ngFor="let o of filteredObjets.slice(paginator.pageIndex * paginator.pageSize, (paginator.pageIndex + 1) * paginator.pageSize)">
           <div class="card-body p-4" id="item">
             <div class="row d-flex justify-content-between align-items-center">
               <div class="col-md-2 col-lg-2 col-xl-2">

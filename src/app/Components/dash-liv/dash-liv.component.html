@@ -3,8 +3,14 @@
 <div class="card">
     <div class="content">
       <!-- Contenu de la carte (80% de la largeur) -->
-      <h2>From {{l.adresse}}  To {{l.costumeradresse}}</h2>
-      <p>Contenu de la livraison...</p>
+      <h2>From {{l.ObjectAdresse}}  To {{l.costumeradresse}}</h2>
+      <div class="details">
+        <h5>BuyerName:  <span>{{l.ObjectUsername}}</span></h5>
+        <h5>BuyerNumber:  <span>{{l.ObjectPhone}}</span></h5>
+        <h5>CostumerName:  <span>{{l.costumername}}</span></h5>
+        <h5>CostumerPhone:  <span>{{l.costumerphone}} </span></h5>
+      </div>
+      
     </div>
       <!-- Bouton d'acceptation -->
       <button class="button accept" onclick="acceptAction()"><fa-icon [icon]="icons.check" ></fa-icon></button>

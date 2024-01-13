@@ -38,8 +38,9 @@ Vendrerouter.post("/achats",(req,res)=>{
      // Créez une "livraison" ici 
       const Livraison = new livraison({
         Objectname: objetAvendre.name,
-        Objectprice: objetAvendre.price,
+        ObjectUsername: objetAvendre.username,
         ObjectAdresse:objetAvendre.adresse,
+        ObjectPhone:objetAvendre.userphone,
         costumername:req.body.user.name,
         costumerphone:req.body.user.phone,
         costumeradresse:req.body.user.adresse,

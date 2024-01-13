@@ -68,7 +68,7 @@ Objetrouter.post(
 Objetrouter.get("/"
 //,verifyToken
 ,(req, res) => {
-    objet.find().populate().then((findedObject) => {
+    objet.find({ vendu: { $exists: false } }).populate().then((findedObject) => {
     res.status(200).json({
         objets: findedObject,  
     });

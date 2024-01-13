@@ -12,12 +12,15 @@ section{
     border-radius: 8px;
     padding: 16px;
     margin: 16px;
+    background-color: var( --light-gray-color);
   }
 
   .content {
     flex: 1;
   }
-
+h2{
+  /*color: var(--primary-color);*/
+}
   .buttons {
     display: flex;
     justify-content: space-between;
@@ -31,16 +34,27 @@ section{
     border-radius: 10px;
     cursor: pointer;
     width: 30px;
-    height: 50px;
+    height: 100%;
     justify-content: center;
   }
 
   .accept {
-    background-color: #4CAF50;
+    background-color: var(--primary-color);
     color: white;
   }
 
   .reject {
     background-color: #f44336;
     color: white;
+  }
+
+  .details{
+    padding: 10px;
+  }
+  .details h5{
+    font-weight: 500;
+    justify-content: space-between;
+  }
+  span{
+    color: slateblue;
   }

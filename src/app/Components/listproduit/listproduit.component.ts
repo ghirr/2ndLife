@@ -10,10 +10,12 @@ import { ProduitService } from 'src/app/Services/produit.service';
 })
 export class ListproduitComponent {
   Objets:any=[];
+  filteredObjets:any=[];
   @ViewChild(MatPaginator) paginator!: MatPaginator ;
   totalItems: number = 0;
   pageSize: number = 3;
   pageEvent!: PageEvent;
+  selectedOption: any='0';
   constructor(private produitservice:ProduitService,private router:Router){
     this.getAllProduit();
   }
@@ -28,7 +30,8 @@ export class ListproduitComponent {
       (result) => {
         console.log("here", result.objets);
         this.Objets = result.objets;
-        this.totalItems = this.Objets.length;
+        this.filteredObjets=this.Objets;
+        this.totalItems = this.filteredObjets.length;
       }
     );
   }
@@ -49,5 +52,26 @@ export class ListproduitComponent {
     
       this.router.navigate([`edit-produit/${id}`]);
     
+  }
+  onOptionChange(){
+    if(this.selectedOption==='0'){
+      this.filteredObjets = this.Objets;
+    }
+    if(this.selectedOption==='2'){
+      console.log("waywa");
+      
+      this.filteredObjets = this.Objets.filter((obj: any) => {
+        console.log(obj.price);
+        
+        return obj.vendu===undefined;
+      });
+    }
+    if(this.selectedOption==='1'){
+      console.log("mama");
+      
+     this.filteredObjets = this.Objets.filter((obj: any) => {
+        return obj.vendu;
+      });
+    }
   }
 }

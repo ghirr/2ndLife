@@ -156,7 +156,7 @@ console.log('lougha');
           console.log(res.message);
           
           this.authlist.next(res.user);
-          this.router.navigate(['/dashLivreur']);
+          this.router.navigate(['/dash-liv']);
         }
         return res;
       })

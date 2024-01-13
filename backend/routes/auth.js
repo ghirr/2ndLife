@@ -118,7 +118,8 @@ Userrouter.post("/sign-up", async (req, res) => {
             name: findedUser.name,
             email: findedUser.email,
             phone:findedUser.phone,
-            adresse:findedUser.adresse
+            adresse:findedUser.adresse,
+            role:findedUser.role
 
           };
           

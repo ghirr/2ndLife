@@ -54,7 +54,7 @@
             </div>
             <div class="offcanvas-body">
               <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
-                <ul class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
+                <ul class="navbar-nav text-uppercase justify-content-center align-items-center flex-grow-1 pe-3">
                 <li class="nav-item" >
                   <a class="nav-link me-4 active" [routerLinkActiveOptions]="{exact:true}" routerLink="/" routerLinkActive="active">Home</a>
                 </li>
@@ -64,6 +64,7 @@
                 <li class="nav-item">
                   <a class="nav-link me-4" routerLink="/cards">Products</a>
                 </li>
+                <!--
                 <li class="nav-item">
                   <a class="nav-link me-4" href="#smart-watches">Watches</a>
                 </li>
@@ -72,8 +73,8 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link me-4" href="#latest-blog">Blog</a>
-                </li>
-                <li class="nav-item dropdown" *ngIf="connectedUser.role=='user'">
+                </li>-->
+                <li class="nav-item dropdown" *ngIf="connectedUser.role==='user'">
                   <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">My products</a>
                   <ul class="dropdown-menu">
                     <li>
@@ -84,7 +85,19 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item" *ngIf="!(connectedUser.role=='admin')" >
+              </ul>
+                <li class="nav-item">
+                  <div class="user-items ps-5">
+                    <ul class="d-flex justify-content-end list-unstyled align-items-center mama">
+                     <!--- <li class="search-item pe-3">
+                        <a href="#" class="search-button">
+                          <svg class="search">
+                            <use xlink:href="#search"></use>
+                          </svg>
+                        </a>
+                      </li> --> 
+                      
+                <li class="nav-item" *ngIf="connectedUser.role==='user'|| connectedUser.role==='livreur'" >
                   <a routerLink="/profile">
                   <div class="user-items ps-5">
                     <div class="profile">
@@ -95,30 +108,26 @@
                   </div>
                 </a>
                 </li>
-              </ul>
-                <li class="nav-item">
-                  <div class="user-items ps-5">
-                    <ul class="d-flex justify-content-end list-unstyled">
-                     <!--- <li class="search-item pe-3">
-                        <a href="#" class="search-button">
-                          <svg class="search">
-                            <use xlink:href="#search"></use>
-                          </svg>
-                        </a>
-                      </li> --> <li class="pe-3" id="panier" *ngIf="!(connectedUser.role=='livreur')">
+                      <li class="pe-3" id="panier" *ngIf="connectedUser.role!=='livreur'">
                         <a routerLink="panier" class="cart-icon-container">
                           <span class="badge">{{count}}</span> <!-- Replace '3' with the actual item count -->
                           <fa-icon [icon]="fa.panier" ></fa-icon>
                         </a>
                       </li>
-                      <li class="pe-3">
-                        <a type="submit" routerLink="/auth" (click)="logout()" *ngIf="connectedUser.name">
+                      <li class="pe-3" *ngIf="connectedUser.role">
+                        <a type="submit" routerLink="/auth" (click)="logout()" >
                           <fa-icon [icon]="fa.out" ></fa-icon>
                         </a>
                       </li>
                       <li class="pe-3">
                         <a routerLink="/auth" *ngIf="!connectedUser.name">
                           <fa-icon [icon]="fa.in" ></fa-icon>
+                        </a>
+                      </li>
+                      
+                      <li class="pe-3" *ngIf="!connectedUser.role">
+                        <a type="submit" routerLink="/login-liv" >
+                          <fa-icon [icon]="fa.liv" ></fa-icon>
                         </a>
                       </li>
                      

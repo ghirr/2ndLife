@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { PanierService } from 'src/app/Services/panier.service';
-import { faSignOutAlt ,faUser, faShoppingCart,faNavicon} from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt ,faUser, faShoppingCart,faNavicon,faShippingFast} from '@fortawesome/free-solid-svg-icons';
 import { UserauthService } from 'src/app/Services/userauth.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class HeaderComponent {
   count:any=0;
   connectedUser:any
   fa={
-    out:faSignOutAlt,in:faUser,panier:faShoppingCart,nav:faNavicon
+    out:faSignOutAlt,in:faUser,panier:faShoppingCart,nav:faNavicon,liv:faShippingFast
   }
   listener !: Subscription 
   auth !: Subscription 
