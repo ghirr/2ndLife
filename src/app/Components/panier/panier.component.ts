@@ -18,12 +18,13 @@ export class PanierComponent implements OnInit {
   ids:Array<String>=[]
   icons={
     p:faTrash,
-    b:faLongArrowAltLeft
+    b:faLongArrowAltLeft,
   };
   selectedOption: any='1';
   livraison:Boolean=true;
   payementConfig={};
   connectedUser:any;
+  
   @ViewChild('payment',{static:true}) payment!:ElementRef;
   constructor(private panierService:PanierService,private payementService:PayementService,private router:Router){
     
@@ -38,8 +39,7 @@ export class PanierComponent implements OnInit {
 
     //Paypal Solution
     //console.log(window.paypal);
-    
-    window.paypal.Buttons({
+    if(this.connectedUser.email){window.paypal.Buttons({
       createOrder: (data: any, actions: any) => {
         return actions.order.create({
           purchase_units: [
@@ -58,8 +58,10 @@ export class PanierComponent implements OnInit {
         console.log("dkhalet");
     
         localStorage.removeItem("objets");
-        this.getObjets();
+            this.getObjets();
             this.count=0;
+            this.panierService.countSubject.next(this.objets.length);
+            this.panierService.getCount();
 
         // Utilisation de await ici
         this.payementService.achatProduit(this.ids, this.connectedUser, this.livraison);
@@ -70,7 +72,8 @@ export class PanierComponent implements OnInit {
       onError: (error: any) => {
         console.log(error);
       }
-    }).render(this.payment.nativeElement);
+    }).render(this.payment.nativeElement);}
+    
     
   }
   getObjets(){

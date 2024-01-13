@@ -1,4 +1,9 @@
 <br><br><br><br><br>
+<div *ngIf="livraisons.length==0" style="display: flex; justify-items: center;justify-content: center;">
+  <div id="feragh"  style="display: flex; justify-content: space-around; margin: 140px 20px;">
+    <img src="assets/images/nodata.jpg"  style="max-height: 200px;"/>
+    <h1 style="color: rgb(165, 159, 159);align-items: center;margin-top: 100px;">Pas de livarisons</h1>
+  </div></div>
 <section *ngFor="let l of livraisons ">
 <div class="card">
     <div class="content">

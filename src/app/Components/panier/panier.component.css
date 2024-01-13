@@ -18,6 +18,14 @@
     .bg-grey {
     background-color: #eae8e8;
     }
+    .paypal{
+        padding: 10px;
+        background-color: #FAEF5D;
+        width: 300px;
+        align-items: center;
+        border: none;
+        border-radius: 10px;
+    }
     
     @media (min-width: 992px) {
     .card-registration-2 .bg-grey {

@@ -32,7 +32,9 @@ getLivraisons(){
 acceptAction(id:any){
   console.log(this.connectedUser.id);
   
-this.service.mesLivraison(id,this.connectedUser.id);
-this.getLivraisons();
+this.service.mesLivraison(id,this.connectedUser.id).subscribe((res)=>{
+  this.getLivraisons();
+})
+
 }
 }
