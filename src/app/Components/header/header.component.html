@@ -48,7 +48,7 @@
           <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
             <div class="offcanvas-header px-4 pb-0">
               <a class="navbar-brand" href="index.html">
-                <img src="assets/images/main-logo.png" class="logo">
+                <img src="assets/images/logo.png" class="logo">
               </a>
               <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
             </div>
@@ -61,7 +61,10 @@
                 <li class="nav-item" *ngIf="connectedUser.role=='livreur'">
                   <a class="nav-link me-4" routerLink="/dash-liv">Livraisons</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="connectedUser.role=='livreur'">
+                  <a class="nav-link me-4" routerLink="/mesLivraisons">Mes Livraisons</a>
+                </li>
+                <li class="nav-item" *ngIf="connectedUser.role!='livreur'">
                   <a class="nav-link me-4" routerLink="/cards">Products</a>
                 </li>
                 <!--

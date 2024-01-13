@@ -1,0 +1,14 @@
+<br><br><br><br><br>
+<div class="cards" *ngFor="let l of livraisons ">
+    <div class="card">
+        <div class="content"> <div class="etat"><img src="assets/images/inprogress.png "/><span class=".text-danger">EnCours</span></div>
+        <h2>From {{l.ObjectAdresse}}  To {{l.costumeradresse}}</h2>
+        <div class="details">
+          <h5>BuyerName:  <span>{{l.ObjectUsername}}</span></h5>
+          <h5>BuyerNumber:  <span>{{l.ObjectPhone}}</span></h5>
+          <h5>CostumerName:  <span>{{l.costumername}}</span></h5>
+          <h5>CostumerPhone:  <span>{{l.costumerphone}} </span></h5>
+        </div></div>
+       <button class="btn btn-success" (click)="terminer(l._id)" >Terminer</button>
+    </div>
+</div>

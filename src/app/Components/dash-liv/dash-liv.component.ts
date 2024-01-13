@@ -11,11 +11,12 @@ export class DashLivComponent implements OnInit{
     check:faCheck
   };
   livraisons:any=[];
+  connectedUser:any;
 constructor(private service:PayementService){}
 
 ngOnInit(): void {
   this.getLivraisons();
-  
+  this.connectedUser = JSON.parse(localStorage.getItem("connectedUser") || '{}')
 }
 
 getLivraisons(){
@@ -27,5 +28,11 @@ getLivraisons(){
   console.log(this.livraisons);
   });
   
+}
+acceptAction(id:any){
+  console.log(this.connectedUser.id);
+  
+this.service.mesLivraison(id,this.connectedUser.id);
+this.getLivraisons();
 }
 }

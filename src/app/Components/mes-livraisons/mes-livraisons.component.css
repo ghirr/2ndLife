@@ -1,0 +1,25 @@
+.etat img{
+    width: 30px;
+    height: 30px;
+}
+.etat span{
+    color: #D24545;
+}
+.details{
+    padding: 10px;
+  }
+  .cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 70px;
+  }
+
+  .card {
+    width: 80%; /* Ajustez la largeur selon vos besoins */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    background-color: var( --light-gray-color);
+  }
