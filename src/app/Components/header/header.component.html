@@ -67,6 +67,9 @@
                 <li class="nav-item" *ngIf="connectedUser.role!='livreur'">
                   <a class="nav-link me-4" routerLink="/cards">Products</a>
                 </li>
+                <li class="nav-item" *ngIf="connectedUser.role=='admin'">
+                  <a class="nav-link me-4" routerLink="/dash">DashAdmin</a>
+                </li>
                 <!--
                 <li class="nav-item">
                   <a class="nav-link me-4" href="#smart-watches">Watches</a>
@@ -100,7 +103,7 @@
                         </a>
                       </li> --> 
                       
-                <li class="nav-item" *ngIf="connectedUser.role==='user'|| connectedUser.role==='livreur'" >
+                <li class="nav-item" *ngIf="connectedUser.role==='user'|| connectedUser.role==='livreur'|| connectedUser.role==='admin'" >
                   <a routerLink="/profile">
                   <div class="user-items ps-5">
                     <div class="profile">
@@ -111,7 +114,7 @@
                   </div>
                 </a>
                 </li>
-                      <li class="pe-3" id="panier" *ngIf="connectedUser.role!=='livreur'">
+                      <li class="pe-3" id="panier" *ngIf="(connectedUser.role!=='livreur')&&(connectedUser.role!=='admin')">
                         <a routerLink="panier" class="cart-icon-container">
                           <span class="badge">{{count}}</span> <!-- Replace '3' with the actual item count -->
                           <fa-icon [icon]="fa.panier" ></fa-icon>

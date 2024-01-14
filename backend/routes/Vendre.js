@@ -133,4 +133,14 @@ Vendrerouter.get("/livraisons", async(req, res) => {
     }
   });
 
+  Vendrerouter.get('/',async(req,res)=>{
+    try{
+      let data = await livraison.find({}); // Use await to get the result
+  
+      return res.status(200).json({ livraisons: data }); // Corrected syntax for res.status
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  })
+
 module.exports= Vendrerouter;

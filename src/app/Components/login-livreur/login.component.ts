@@ -9,6 +9,7 @@ import { UserauthService } from 'src/app/Services/userauth.service';
 })
 export class LoginComponent implements OnInit{
   loginForm !: FormGroup;
+  message:any='';
   constructor(private userService:UserauthService,private fb: FormBuilder){}
   ngOnInit() {
   this.loginForm = this.fb.group({
@@ -20,8 +21,8 @@ export class LoginComponent implements OnInit{
  
  loginUser(user:any){
   this.userService.loginLivreur(user).subscribe(
-    () =>{
-      //this.router.navigate(['']);
+    (res) =>{
+      this.message=res.message;
     }
   )
 }

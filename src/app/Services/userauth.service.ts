@@ -148,6 +148,9 @@ console.log('lougha');
       })
     ); 
   }
+  getAllUsers(): Observable<any>{
+    return this.httpClient.get(this.user_url+'/users');
+  }
 
 
   loginLivreur(user: any){
@@ -166,5 +169,13 @@ console.log('lougha');
         return res;
       })
     );
+  }
+
+  getAllLivreurs():Observable<any>{
+    return this.httpClient.get('http://localhost:3000/livreur/');
+  }
+
+  deleteLivreur(id:any){
+    return this.httpClient.delete(`http://localhost:3000/livreur/${id}`)
   }
 }

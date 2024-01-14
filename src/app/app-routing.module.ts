@@ -37,6 +37,8 @@ const routes: Routes = [
   {path: 'recover-pwd-liv' , component:RecoverPWDComponent},
   {path:"dash-liv",component:DashLivComponent},
   {path:"mesLivraisons",component:MesLivraisonsComponent},
+  {path:"dash",component:DashAdminComponent},
+
 
   {path:"**",pathMatch: 'full',component:ErrorPageComponent},
 ];

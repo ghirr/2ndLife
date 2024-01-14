@@ -30,4 +30,7 @@ export class PayementService {
   terminer(id:any){
     return this.httpClient.put<{message:any}>(`${this.URL}/livraisons/terminer/${id}`,{});
   }
+  getAllLivraisons():Observable<any>{
+    return this.httpClient.get(this.URL);
+  }
 }

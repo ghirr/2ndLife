@@ -1,1 +1,149 @@
-<p>dash-admin works!</p>
+<br><br><br><br><br>
+<div class="hama">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Users</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Livreurs</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Produits</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" 
+                  id="tables-tab" 
+                  data-bs-toggle="tab" 
+                  data-bs-target="#tables" 
+                  type="button" 
+                  role="tab" 
+                  aria-controls="tables" 
+                  aria-selected="false" >
+                  livraisons
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <h1>Liste des Utilisateurs</h1>
+              <div class="progress-table-wrap">
+                <div class="progress-table">
+                    <div class="table-head">
+                        <div class="visit">Name</div>
+                        <!--<div class="country">Image</div>-->
+                        <div class="visit">Email</div>
+                        <div class="visit">Phone Number</div>
+                        <div class="visit">Adress</div>
+                        <!--<div class="visit">description</div>-->
+                    </div>
+                   <div class="table-row" *ngFor="let u of Users">
+                        <div class="visit" style="color:rgb(168, 100, 100);"><b>{{u.name}}</b></div>
+                        <div class="visit">{{u.email}}</div>
+                        <div class="visit">{{u.phone}}</div>
+                        <div class="visit">{{ u.adresse }}</div>
+    
+    <!---
+    
+                        <div class="visit">{{p.description}}</div>
+                       <div class="visit"> 
+                        <button type="button" class="btn btn-info" (click)="editProject(p._id)" >Edit</button>
+                      </div> 
+                        <div class="visit">
+                            <button type="button" class="btn btn-danger" (click)="deleteProject(p._id)" >delete</button>
+                          </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    
+    
+            <h1>Liste des Livreurs</h1>
+          <div class="progress-table-wrap">
+            <div class="progress-table">
+                <div class="table-head">
+                    <div class="visit">Name</div>
+                    <div class="country">Email</div>
+                    <div class="visit">numTel</div>
+                    <div class="visit">Delete</div>
+                </div>
+                <div class="table-row" *ngFor="let liv of Livreurs">
+                    <div class="visit" style="color:rgb(168, 100, 100);"><b>{{liv.username}}</b></div>
+                    <div class="visit">{{liv.email}}</div>
+                    <div class="visit" >
+                        {{liv.numTel}}
+                    </div>
+                    <div class="visit">
+                      <button type="button" class="btn btn-danger"  (click)="deleteLivreur(liv._id)">delete</button>
+                    </div>
+                 <!-- <div class="visit"> 
+                      <button type="button" class="btn btn-info" (click)="editPartenaire(p._id)" >Edit</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <h1>Liste des Produits</h1>
+    
+     <div class="progress-table-wrap">
+                <div class="progress-table">
+                    <div class="table-head">
+                        <div class="visit">name</div>
+                        <div class="country">Image</div>
+                        <div class="visit">price</div>
+                        <div class="visit">adresse</div>
+                        <div class="visit">Etat</div>
+                        <div class="visit">Delete</div>
+                      </div>
+                      <div class="table-row" *ngFor="let o of Objets">
+                          <div class="visit" style="color:rgb(168, 100, 100);"><b>{{o.name}}</b></div>
+                          <div class="country"> <img [src]="o.image" style="height: 50px; width: 100px;margin-left: 5px;"></div>
+                          <div class="visit">{{o.price}}</div>
+                          <div class="visit">{{ o.adresse }}</div>
+                          <div class="visit" *ngIf="o.vendu">Vendu</div>
+                          <div class="visit" *ngIf="!o.vendu">en cours</div>
+                          <div class="visit">
+                              <button type="button" class="btn btn-danger"  (click)="deleteProduit(o._id)">delete</button>
+                            </div>
+                       <!--   <div class="visit"> 
+                              <button type="button" class="btn btn-info" (click)="editEvent(e._id)" >Edit</button>
+                            </div> 
+                      </div>-->
+                  </div>
+              </div>
+          
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tables" role="tabpanel" aria-labelledby="tables-tab">
+        <div class="progress-table-wrap">
+            <h1>Liste des Livraisons</h1>
+          <div class="progress-table">
+              <div class="table-head">
+                
+                <div class="visit">Produit</div>
+                  <div class="visit">From</div>
+                  <div class="visit">To</div>
+                  <div class="visit">Seler</div>
+                  <div class="visit">Buyer</div>
+                  <div class="visit">Etat</div>
+              </div>
+          <div class="table-row" *ngFor="let l of livraisons">
+                  <div class="visit" style="color:rgb(168, 100, 100);"><b>{{l.Objectname}}</b></div>
+                  <div class="visit">{{l.ObjectAdresse}}</div>
+                  <div class="visit">{{l.costumeradresse}}</div>
+                  <div class="visit">{{l.ObjectUsername}}</div>
+                  <div class="visit">
+                      {{l.costumername}}
+                    </div>
+                    <div class="visit" *ngIf="l.terminer">
+                        Arriver au Destination
+                      </div>
+                      <div class="visit" *ngIf="!l.terminer">
+                       en cours
+                      </div>
+              </div>
+          </div>
+      </div>
+      </div>
+    </div>

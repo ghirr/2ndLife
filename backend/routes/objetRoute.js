@@ -77,9 +77,7 @@ Objetrouter.get("/"
 });
 //trait latest 
 Objetrouter.get("/latest", (req, res) => {
-  const objets = objet.find({ vendu: { $exists: false } })
-    .sort({ dateDeCreation: -1 })
-    .limit(5);
+  const objets = objet.find({ })
 
   // Récupérer les objets
   objets.then((findedObject) => {

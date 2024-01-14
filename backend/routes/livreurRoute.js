@@ -87,5 +87,21 @@ Livreurrouter.post("/signup", async (req, res) => {
         }
       });
     });
+  Livreurrouter.get('/',async(req,res)=>{
+    try{
+      let data = await Livreur.find({}); // Use await to get the result
   
+      return res.status(200).json({ livreurs: data }); // Corrected syntax for res.status
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  })
+
+  Livreurrouter.delete('/:id',(req,res)=>{
+    Livreur.deleteOne({ _id: req.params.id }).then(() => {
+     return res.status(200).json({
+        message: "livreur deleted",
+      });
+  });
+});
   module.exports = Livreurrouter

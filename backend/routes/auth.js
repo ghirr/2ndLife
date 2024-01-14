@@ -135,7 +135,7 @@ Userrouter.post("/sign-up", async (req, res) => {
       }
     });
   });
-  Userrouter.put('/',async(req,res)=>{
+  Userrouter.put('/',(req,res)=>{
     try{
       console.log(req.body);
       User.findOne({ email: req.body.email }).then(async (findedUser) => {
@@ -217,6 +217,15 @@ Userrouter.post("/sign-up", async (req, res) => {
       
     };
     
-  })
+  });
+  Userrouter.get('/users', async (req, res) => {
+    try {
+      let data = await User.find({role:'user'}); // Use await to get the result
+  
+      return res.status(200).json({ users: data }); // Corrected syntax for res.status
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  });
 
 module.exports = Userrouter
