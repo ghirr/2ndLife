@@ -76,7 +76,8 @@ Livreurrouter.post("/signup", async (req, res) => {
             let user = {
               name: findedUser.username,
               email: findedUser.email,
-              role:"livreur"
+              role:"livreur",
+              id:findedUser._id,
             };
             res.status(200).json({
               message: "Welcome "+user.name,

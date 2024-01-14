@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 col-sm-9">
-    <form class="form-horizontal">
+    <form class="form-horizontal" [formGroup]="myForm" (ngSubmit)="onSubmit()">
         <div class="panel panel-default">
           <div class="panel-body text-center" >
            <img (mouseenter)="onHover()" (mouseleave)="onLeave()" [src]="currentImage" class="profile-avatar" alt="User avatar">
@@ -11,8 +11,8 @@
         <h4 class="panel-title">User info</h4>
         </div>
         <div class="panel-body">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Location</label>
+          <div class="form-group" formGroupName="firstSet">
+            <label class="col-sm-2 control-label" *ngIf="user.role=='user'">Location</label>
             <!--div class="col-sm-10">
               <select class="form-control">
                 <option selected="">Select country</option>
@@ -22,18 +22,24 @@
                 <option>Estonia</option>
                 <option>France</option>
               </select>
-            </div-->
+            </div
             <div class="col-sm-10">
                 <iframe style="border:0; width: 100%; height: 270px;" src="https://maps.google.com/maps?q=iset rades&t=&z=10&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="col-sm-10">
-                <input type="text" class="form-control">
+            </div>-->
+            <div class="col-sm-10" *ngIf="user.role=='user'">
+                <input type="text" class="form-control" formControlName="location">
+                <div *ngIf="myForm.get('firstSet.location')?.hasError('required') && myForm.get('firstSet.location')?.touched" class="text-danger">
+                  Location is required.
+                </div>
               </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" formGroupName="firstSet">
             <label class="col-sm-2 control-label">name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" formControlName="name">
+              <div *ngIf="myForm.get('firstSet.name')?.hasError('required') && myForm.get('firstSet.name')?.touched" class="text-danger">
+                Name is required.
+              </div>
             </div>
           </div>
         </div>
@@ -43,17 +49,30 @@
         <div class="panel-heading">
         <h4 class="panel-title">Contact info</h4>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" formGroupName="contactInfo">
           <div class="form-group">
             <label class="col-sm-2 control-label">Mobile number</label>
             <div class="col-sm-10">
-              <input type="tel" class="form-control">
+              <input type="tel" class="form-control" formControlName="mobileNumber">
+              <div *ngIf="myForm.get('contactInfo.mobileNumber')?.hasError('required') && myForm.get('contactInfo.mobileNumber')?.touched" class="text-danger">
+                Mobile number is required.
+              </div>
+              <div *ngIf="myForm.get('contactInfo.mobileNumber')?.hasError('invalidPhoneNumber')" class="text-danger">
+                Invalid mobile number format.
+              </div>
+              <div  class="text-danger" *ngIf="myForm.get('contactInfo.mobileNumber')?.errors?.['minlength'] || myForm.get('contactInfo.mobileNumber')?.errors?.['maxlength']">numero 8 chiffres</div>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" >
             <label class="col-sm-2 control-label">E-mail address</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control">
+              <input type="email" class="form-control" formControlName="emailAddress">
+              <div *ngIf="myForm.get('contactInfo.emailAddress')?.hasError('required') && myForm.get('contactInfo.emailAddress')?.touched" class="text-danger">
+                Email address is required.
+              </div>
+              <div *ngIf="myForm.get('contactInfo.emailAddress')?.hasError('email')" class="text-danger">
+                Invalid email address format.
+              </div>
             </div>
           </div>
         </div>
@@ -64,29 +83,37 @@
         <h4 class="panel-title">Security</h4>
         </div>
         <div class="panel-body">
-          <div class="form-group">
+          <div class="form-group" formGroupName="security">
             <label class="col-sm-2 control-label">Current password</label>
             <div class="col-sm-10">
-              <input type="password" class="form-control">
+              <input type="password" class="form-control" formControlName="currentPassword">
+              <div *ngIf="myForm.controls['security.currentPassword']?.errors?.['minlength']" class="text-danger" >Password mast have at least 6 chas</div>
+			   		<div class="text-danger" *ngIf="myForm.get('security.currentPassword')?.hasError('passwordStrength') ">{{myForm.get('security.currentPassword')?.errors?.['passwordStrength']}}</div>
+             <div *ngIf="myForm.get('security.currentPassword')?.hasError('required') && myForm.get('security.currentPassword')?.touched" class="text-danger">
+              Current password is required.
+            </div>
+            <div *ngIf="this.errorMesage!=''" class="text-danger">{{errorMesage}}</div>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" formGroupName="security">
             <label class="col-sm-2 control-label">New password</label>
             <div class="col-sm-10">
-              <input type="password" class="form-control">
+              <input type="password" class="form-control " formControlName="newPassword">
+              <div *ngIf="myForm.controls['security.newPassword']?.errors?.['minlength']" class="text-danger" >Password mast have at least 6 chas</div>
+              <div class="text-danger" *ngIf="myForm.get('security.newPassword')?.hasError('passwordStrength') ">{{myForm.get('security.newPassword')?.errors?.['passwordStrength']}}</div>
             </div>
           </div>
-          <div class="form-group">
+         <!-- <div class="form-group">
             <div class="col-sm-10 col-sm-offset-2">
               <div class="checkbox">
                 <input type="checkbox" id="checkbox_1">
                 <label for="checkbox_1">Make this account public</label>
               </div>
             </div>
-          </div>
+          </div>-->
           <div class="form-group">
             <div class="col-sm-10 col-sm-offset-2">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit"  class="btn btn-primary">Submit</button>
               <button type="reset" class="btn btn-default">Cancel</button>
             </div>
           </div>

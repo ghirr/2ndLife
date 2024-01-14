@@ -19,4 +19,15 @@ export class PayementService {
   getLivraison():Observable<any>{
     return this.httpClient.get<{ livraison: any }>(`${this.URL}/livraisons`)
   }
+  mesLivraison(id:any,livreur:any){
+    const requestData = { livreur: livreur };
+    
+    return this.httpClient.put<{message:any}>(`${this.URL}/livraisons/${id}`,requestData);
+  }
+  getMesLivraisons(livreur:any){
+    return this.httpClient.get<{ livraison: any }>(`${this.URL}/livraisons/${livreur}`)
+  }
+  terminer(id:any){
+    return this.httpClient.put<{message:any}>(`${this.URL}/livraisons/terminer/${id}`,{});
+  }
 }

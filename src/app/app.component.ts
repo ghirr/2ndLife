@@ -19,7 +19,7 @@ export class AppComponent implements OnInit{
         const currentPath = event.urlAfterRedirects.split('?')[0];
         console.log(currentPath);
         
-        if (!['/', '/auth', '/list', '/cards', '/panier', '/add-produit', '/edit-produit/:id', '/login-liv', '/signup-liv', '/recover-pwd-liv', '/dash-liv', '/profile', '/add-chef/:id', '/admin/chefs', '/admin/plats', '/admin/users', '/admin/tables', '/dash', '/add-produit'].includes(currentPath)) {
+        if (!['/', '/auth', '/list', '/cards', '/panier', '/add-produit', '/edit-produit/:id', '/login-liv', '/signup-liv', '/recover-pwd-liv', '/dash-liv', '/profile', '/mesLivraisons', '/admin/chefs', '/admin/plats', '/admin/users', '/admin/tables', '/dash', '/add-produit'].includes(currentPath)) {
           this.showHeader = false;
           this.showFooter = false;
         }

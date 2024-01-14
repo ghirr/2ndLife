@@ -27,6 +27,8 @@ const livraisonSchema= mongoose.Schema({
     },
     costumeradresse:String,
     adresse:String,
+    livreur:String,
+    terminer:Boolean,
 })
 
 const livraison = mongoose.model("livraisons",livraisonSchema) 

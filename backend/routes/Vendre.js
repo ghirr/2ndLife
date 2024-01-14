@@ -66,7 +66,7 @@ else{
 });
 Vendrerouter.get("/livraisons", async(req, res) => {
     try {
-      const livraisons = await livraison.find({});
+      const livraisons = await livraison.find({livreur: { $exists: false } });
       return res.status(200).json({
         livraison:livraisons
       });
@@ -75,6 +75,62 @@ Vendrerouter.get("/livraisons", async(req, res) => {
       res.status(500).json({ error: "Une erreur s'est produite lors de la récupération des livraisons." });
     }
   });
+
+  Vendrerouter.put("/livraisons/:id", async (req, res) => {
+    try {
+      const livraisons = await livraison.findById(req.params.id);
   
+      if (!livraisons) {
+        return res.status(404).json({ error: "Livraison not found" });
+      }
+      console.log(req.body.livreur);
+      livraisons.livreur = req.body.livreur;
+      console.log(livraisons);
+      await livraisons.save();
+  
+      return res.status(200).json({
+        message: "Livraison updated successfully",
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        error: "Une erreur s'est produite lors de la mise à jour de la livraison.",
+      });
+    }
+  });
+  Vendrerouter.get("/livraisons/:id", async(req, res) => {
+    try {
+      const livraisons = await livraison.find({livreur: req.params.id,
+        terminer: { $exists: false } });
+      return res.status(200).json({
+        livraison:livraisons
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Une erreur s'est produite lors de la récupération des livraisons." });
+    }
+  });
+  Vendrerouter.put("/livraisons/terminer/:id", async (req, res) => {
+    try {
+      const livraisons = await livraison.findById(req.params.id);
+  
+      if (!livraisons) {
+        return res.status(404).json({ error: "Livraison not found" });
+      }
+      console.log(req.body.livreur);
+      livraisons.terminer = true;
+      console.log(livraisons);
+      await livraisons.save();
+  
+      return res.status(200).json({
+        message: "Livraison updated successfully",
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        error: "Une erreur s'est produite lors de la mise à jour de la livraison.",
+      });
+    }
+  });
 
 module.exports= Vendrerouter;

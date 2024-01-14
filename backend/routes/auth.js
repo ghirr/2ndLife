@@ -135,5 +135,88 @@ Userrouter.post("/sign-up", async (req, res) => {
       }
     });
   });
+  Userrouter.put('/',async(req,res)=>{
+    try{
+      console.log(req.body);
+      User.findOne({ email: req.body.email }).then(async (findedUser) => {
+        if (!findedUser) {
+          res.status(200).json({
+            message: "please verify your credentials",
+          });
+          return
+        } else {
+          console.log(req.body.user.password);
+          console.log("findedUser:", findedUser);
+          let comPwd = await bcrypt.compare(req.body.user.password, findedUser.password);
+          console.log("here co pwf", comPwd);
+          if (!comPwd) {
+            res.status(200).json({
+              message: "please verify your credentials",
+            });
+            return
+          } else {/*
+            let user = {
+              name: findedUser.name,
+              email: findedUser.email,
+              phone:findedUser.phone,
+              adresse:findedUser.adresse,
+              role:findedUser.role
+  
+            };
+            
+         let data= jwt.sign({
+            data: {id:findedUser._id,role:findedUser.role},
+          }, config.secret,{ expiresIn: '10m' });
+            res.status(200).json({
+              message: "Welcome "+user.name,
+              user: user,
+              token:data
+            });*/
+            if(req.body.user.newpassword!=''){
+              console.log('badel il passe');
+              
+      // Update password logic here, e.g., using bcrypt to hash the new password
+      const hashedNewPassword = await bcrypt.hash(req.body.user.newpassword, 10);
+
+      // Update the user document with the new hashed password
+      await User.updateOne({ _id: findedUser._id }, { $set: {
+        name: req.body.user.name,
+        email: req.body.user.email,
+        phone: req.body.user.number,
+        adresse: req.body.user.adresse,
+        password: hashedNewPassword } });
+
+      return res.status(200).json({
+        message: "User information updated successfully",
+      });
+            }else{
+              console.log('mabadelech il pass');
+              await User.updateOne(
+                { _id: findedUser._id },
+                {
+                  $set: {
+                    name: req.body.user.name,
+                    email: req.body.user.email,
+                    phone: req.body.user.number,
+                    adresse: req.body.user.adresse,
+                  },
+                }
+              );
+        
+              return res.status(200).json({
+                message: "User information updated successfully",
+              });
+              
+            }
+          }
+        }
+      });
+    }
+    catch(error) {
+    return res.status(500).json({ error: error });
+      
+    };
+    
+  })
 
 module.exports = Userrouter

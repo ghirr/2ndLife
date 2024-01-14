@@ -126,6 +126,11 @@ console.log('lougha');
     localStorage.removeItem("connectedUser")
     this.authlist.next("")
   }
+  modifierUser(email:any,user:any){
+   return this.httpClient.put<{message:any}>(this.user_url,{email,user});
+
+
+  }
   addLivreur(user: any) {
     return this.httpClient.post("http://localhost:3000/livreur/signup", user).pipe(
       switchMap((res:any) => {console.log(res);

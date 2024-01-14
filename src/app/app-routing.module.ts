@@ -14,6 +14,7 @@ import { RecoverPWDComponent } from './Components/recover-pwd-livreur/recover-pw
 import { PanierComponent } from './Components/panier/panier.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { DashLivComponent } from './Components/dash-liv/dash-liv.component';
+import { MesLivraisonsComponent } from './Components/mes-livraisons/mes-livraisons.component';
 
 const routes: Routes = [
   {path:"auth",component:AuthentificationComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'signup-liv' , component:SignupComponent},
   {path: 'recover-pwd-liv' , component:RecoverPWDComponent},
   {path:"dash-liv",component:DashLivComponent},
+  {path:"mesLivraisons",component:MesLivraisonsComponent},
 
   {path:"**",pathMatch: 'full',component:ErrorPageComponent},
 ];

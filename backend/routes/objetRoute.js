@@ -75,6 +75,21 @@ Objetrouter.get("/"
     return;
   });
 });
+//trait latest 
+Objetrouter.get("/latest", (req, res) => {
+  const objets = objet.find({ vendu: { $exists: false } })
+    .sort({ dateDeCreation: -1 })
+    .limit(5);
+
+  // Récupérer les objets
+  objets.then((findedObject) => {
+    // Renvoyer les objets
+    res.status(200).json({
+      objets: findedObject,
+    });
+  });
+});
+
 //   trait logique delete objet
 Objetrouter.delete("/:id"
 //, verifyToken

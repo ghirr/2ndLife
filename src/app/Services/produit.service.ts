@@ -13,6 +13,9 @@ export class ProduitService {
   getAllProduit(): Observable<any>{
     return this.httpClient.get<{ objets: any }>(this.prodURL);
   }
+  getLatestProduit(): Observable<any>{
+    return this.httpClient.get<{ objets: any }>(this.prodURL+"latest");
+  }
   getProduitByUserEmail(email:any): Observable<any>{
     return this.httpClient.get<{ objets: any }>(`${this.prodURL}/own/${email}`);
   }
