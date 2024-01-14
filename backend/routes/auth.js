@@ -151,7 +151,7 @@ Userrouter.post("/sign-up", async (req, res) => {
           console.log("here co pwf", comPwd);
           if (!comPwd) {
             res.status(200).json({
-              message: "please verify your credentials",
+              message: "please verify your credentials"
             });
             return
           } else {/*
@@ -188,6 +188,7 @@ Userrouter.post("/sign-up", async (req, res) => {
 
       return res.status(200).json({
         message: "User information updated successfully",
+        user:{email:findedUser.email,password:req.body.user.newpassword}
       });
             }else{
               console.log('mabadelech il pass');
@@ -205,6 +206,7 @@ Userrouter.post("/sign-up", async (req, res) => {
         
               return res.status(200).json({
                 message: "User information updated successfully",
+              user:{email:findedUser.email,password:req.body.user.password}
               });
               
             }

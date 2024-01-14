@@ -126,8 +126,12 @@ console.log('lougha');
     localStorage.removeItem("connectedUser")
     this.authlist.next("")
   }
+  jassa(){
+    localStorage.removeItem("connectedUser")
+    this.authlist.next("")
+  }
   modifierUser(email:any,user:any){
-   return this.httpClient.put<{message:any}>(this.user_url,{email,user});
+   return this.httpClient.put<{message:any,user:any}>(this.user_url,{email,user});
 
 
   }

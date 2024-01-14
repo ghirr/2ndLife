@@ -92,7 +92,8 @@ export class ProfileComponent implements OnInit{
           this.errorMesage=res.message
         }
         if(res.message=='User information updated successfully'){
-          this.service.logout();
+          
+          this.service.loginUser(res.user).subscribe();
           this.snackBar.open('Profile Modifier', 'ok', {
             duration: 2000
           });
@@ -111,6 +112,16 @@ export class ProfileComponent implements OnInit{
    if(this.user.role=='livreur'){
     console.log('livreur');
     
+   }
+   if(this.user.role=='admin'){
+    if(this.myForm.get('security.currentPassword')?.valid&&this.myForm.get('security.newPassword')?.valid){
+        
+
+    }
+    else{
+      console.log("fama haja mana3rech");
+      
+    }
    }
   }
 }
